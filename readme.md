@@ -16,8 +16,8 @@
 
    ```json
    {
-       "userName:"naruci.me user name",
-       "password:"naruci.me password"
+     "userName": "naruci.me user name",
+     "password": "naruci.me password"
    }
    ```
 
