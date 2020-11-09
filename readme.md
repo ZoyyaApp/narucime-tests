@@ -10,6 +10,8 @@
 
    `yarn install`
 
+   Cypress installation could take a while, be patient.
+
 3. Add a local cypress.env.json file in the repository root
 
    This file contains all cypress environment variables as explained [here](https://docs.cypress.io/guides/guides/environment-variables.html#Option-2-cypress-env-json).
