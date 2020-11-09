@@ -1,0 +1,7 @@
+{
+  "viewportHeight": 960,
+  "viewportWidth": 1440,
+  "chromeWebSecurity": false,
+  "experimentalFetchPolyfill": true,
+  "baseUrl": "https://narucime-dev.azurewebsites.net"
+}

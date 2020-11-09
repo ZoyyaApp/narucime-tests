@@ -1,0 +1,15 @@
+{
+  "name": "narucime-tests",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "cy": "cypress open"
+  },
+  "dependencies": {
+    "cypress": "^5.5.0",
+    "cypress-localstorage-commands": "^1.2.4",
+    "cypress-pipe": "^2.0.0",
+    "typescript": "^4.0.5"
+  }
+}
