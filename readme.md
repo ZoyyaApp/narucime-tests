@@ -1,5 +1,13 @@
 # Naruci.me cypress test repository
 
+## Prerequisites
+
+- Some code editor (Vs Code or similar)
+- Usual dev machine config (NodeJs, Git tool installed)
+- Yarn tool installed, if you don't have it:
+
+  `npm install -g yarn`
+
 ## Getting started
 
 1. Clone the repository
