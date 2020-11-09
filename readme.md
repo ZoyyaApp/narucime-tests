@@ -1,5 +1,7 @@
 # Naruci.me cypress test repository
 
+You can contribute by writing cypress integration test for Naruci.me platform.
+
 ## Prerequisites
 
 - Some code editor (Vs Code or similar)
