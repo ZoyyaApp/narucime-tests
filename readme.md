@@ -25,7 +25,7 @@
 
 ## Open cypress runner
 
-    `yarn cy`
+    yarn cy
 
 cy is a script command (`cypress open`) defined in package.json
 
