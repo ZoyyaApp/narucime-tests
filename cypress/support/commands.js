@@ -30,6 +30,9 @@ Cypress.Commands.add("errorToastVisible", (message) => {
     .contains(message)
     .should("exist");
 });
+Cypress.Commands.add("getWaitClick", (name, waitTime) => {
+  return cy.get(`${name}`).wait(waitTime).click();
+}); 
 Cypress.Commands.add("getInput", (name) => {
   return cy.get(`[data-cy=input_${name}`);
 });
