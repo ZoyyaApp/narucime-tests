@@ -24,34 +24,12 @@ describe("User can login and crate an appointment", () => {
         .wait(1000);
 
     cy.getWaitClick("[data-cy=CypressTest]", 1000);
-    /*cy.get("[data-cy=CypressTest]")
-        .wait(1000)
-        .click();*/
-    
     cy.getWaitClick("[data-cy=button_newBookingRequest]", 1000);
-    /*cy.get("[data-cy=button_newBookingRequest]")
-        .wait(1000)
-        .click();*/
-
     cy.getWaitClick(".ArrowLeft__StyledIcon-qst3h5-0", 1000);
-    /*cy.get(".ArrowLeft__StyledIcon-qst3h5-0")
-        .wait(1000)
-        .click();*/
-    
     cy.getWaitClick('[data-cy="osnovna usluga"]', 1000);
-    /*cy.get('[data-cy="osnovna usluga"]')
-        .wait(1000)
-        .click();*/
-
     cy.getWaitClick("[data-cy=button_nextStep]", 1000);
-    /*cy.get("[data-cy=button_nextStep]") 
-        .wait(1000)
-        .click();*/
-
     cy.getWaitClick("[data-cy=employee_asd]", 1000); //"[data-cy=employee_null]"
-    /*cy.get("[data-cy=employee_asd]") //"[data-cy=employee_null]"
-        .wait(1000) 
-        .click();*/
+
         
     if(cy.get(".styles__WizardNoTimeTitle-vntfsx-63")){ // while ne radi
         cy.get("[data-cy=button_undefined]")
