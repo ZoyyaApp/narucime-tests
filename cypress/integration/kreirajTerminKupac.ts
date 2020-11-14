@@ -13,7 +13,7 @@ describe("User can login and crate an appointment", () => {
         .type(Cypress.env("userNameKupac"))
         .should("have.value", Cypress.env("userNameKupac")); // userName -> email
     
-        cy.getInput("password")
+    cy.getInput("password")
         .type(Cypress.env("password"))
         .should("have.value", Cypress.env("password"));
 
