@@ -22,5 +22,6 @@ declare namespace Cypress {
      */
     getButton(name: string): Chainable<Element>;
     errorToastVisible(message: string): Chainable<Element>;
+    menuListItems(item: string): Chainable<Element>;
   }
 }

@@ -1,10 +1,15 @@
 /// <reference types="cypress" />
 
+
+var name = 'TestIme'
+var surname = 'TestPrezime'
+var mail = 'testmail@mail.hr'
+
 context('Actions', () => {
     beforeEach(() => {
 
         cy.visit('https://narucime-dev.azurewebsites.net/login')
-        cy.get('[data-cy=button_phone]').first().click()
+        cy.get('[data-cy=button_email]').click()
         cy.get('[data-cy=input_email]').type('fran1saban+boris@gmail.com')
         cy.get('[data-cy=input_password]').type('jedan234')
 
@@ -26,29 +31,46 @@ context('Actions', () => {
 
         cy.wait(1000)
 
-        cy.get('[data-cy=input_firstName]').type('TestIme')
+        cy.get('[data-cy=input_firstName]').type(name)
 
-        cy.get('[data-cy=input_lastName]').type('TestPrezime')
+        cy.get('[data-cy=input_lastName]').type(surname)
 
-        cy.get('[data-cy=input_email]').type('testmail@mail.hr')
+        cy.get('[data-cy=input_email]').type(mail)
+
+        cy.get('[data-cy=input_gender]').click()
+
+        cy.menuListItems('Ženski')
+        .click()
 
         cy.get('[data-cy=input_gender]').click()
 
-
-        cy.get('.react-select__menu-list').should('be.visible')
-        .contains('Ženski').click()
-
-        cy.get('[data-cy=input_gender]').click()
-        cy.get('.react-select__menu-list').should('be.visible')
-        .contains('Muški').click()
-
-        cy.get('[data-cy=input_gender]').click()
-        cy.get('.react-select__menu-list').should('be.visible')
-        .contains('Ne želim upisati').click()
+        cy.menuListItems('Muški')
+        .click()
         
+        cy.get('[data-cy=input_gender]').click()
+
+        cy.menuListItems('Ne želim upisati')
+        .click()
+
 
         cy.get('[data-cy=input_role]').click()
 
+        cy.menuListItems('Vlasnik')
+        .click()
+
+        cy.get('[data-cy=input_role]').click()
+
+        cy.menuListItems('Korisnik')
+        .click()
+
+        cy.get('[data-cy=input_role]').click()
+
+        cy.menuListItems('Administrator')
+        .click()
+
+        cy.get('[data-cy=button_saveChanges]').click()
+
+        cy.get('.styles__TableStyled-oksjky-0').contains(name+' '+surname)
       })
 
 

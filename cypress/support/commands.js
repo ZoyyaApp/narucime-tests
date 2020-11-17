@@ -24,7 +24,11 @@ import "cypress-localstorage-commands";
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
-
+Cypress.Commands.add("menuListItems", (item)=>{
+  cy.get('.react-select__menu-list')
+  .should('be.visible')
+  .contains(item)
+})
 Cypress.Commands.add("errorToastVisible", (message) => {
   cy.get(".Toastify__toast-body", { timeout: 5000 })
     .contains(message)
