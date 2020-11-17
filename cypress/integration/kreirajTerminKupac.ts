@@ -7,7 +7,7 @@ describe("User can login and crate an appointment", () => {
   it("Fill the login form and submit with enter", () => {
     cy.visit("/login");
 
-    cy.get("[data-cy=button_phone]").first().click();
+    cy.get("[data-cy=button_email]").click();
 
     cy.getInput("email")
         .type(Cypress.env("userNameKupac"))
@@ -25,7 +25,7 @@ describe("User can login and crate an appointment", () => {
 
     cy.getWaitClick("[data-cy=CypressTest]", 1000);
     cy.getWaitClick("[data-cy=button_newBookingRequest]", 1000);
-    cy.getWaitClick(".ArrowLeft__StyledIcon-qst3h5-0", 1000);
+    cy.getWaitClick(".ArrowLeft__StyledIcon-qst3h5-0", 1000); // "losa oznaka" jer je quickFix za bug, ipak identifier za arrowLeft?
     cy.getWaitClick('[data-cy="osnovna usluga"]', 1000);
     cy.getWaitClick("[data-cy=button_nextStep]", 1000);
     cy.getWaitClick("[data-cy=employee_asd]", 1000); //"[data-cy=employee_null]"
@@ -37,12 +37,12 @@ describe("User can login and crate an appointment", () => {
             .click();
         if(!cy.get(".styles__WizardNoTimeTitle-vntfsx-63").should("not.exist")){ // while workaround https://github.com/cypress-io/cypress/issues/8100
             cy.get("[data-cy=button_undefined]") // ? the state of the DOM is immutable ?
-                .wait(1000)  
+                .wait(1000)
                 .click();
         }
     }
 
-    cy.get(".styles__WizardTimesWrapper-vntfsx-65 > :nth-child(1)").click();
+    cy.get(".styles__WizardTimesWrapper-vntfsx-65 > :nth-child(1)").click(); // nastavak gornjeg quickfixa, plan je promjeniti
 
     cy.get('[data-cy=input_comment]')
         .type("Napominjem napomenu")
@@ -56,12 +56,9 @@ describe("User can login and crate an appointment", () => {
 
     // uspjesno kreiran termin
     
-    //cy.get("[data-cy=button_nextStep]")
-    cy.get(".style__ButtonLabel-sc-1yo6tdd-1") 
+    cy.get("[data-cy=button_nextStep]") // .style__ButtonLabel-sc-1yo6tdd-1 
         .wait(5000)
-        .click(); 
-
-    // click ne radi?
+        .click(); // click ne radi
 
   })
 
