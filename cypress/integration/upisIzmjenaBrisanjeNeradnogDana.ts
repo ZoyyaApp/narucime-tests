@@ -25,8 +25,12 @@ describe("Owner can login and crate an appointment / check existing", () => {
 
     cy.location('pathname').should('include', '/settings/organization/');
 
-    cy.getWaitClick('[href="/bnenl/115/settings/organization/locations/115/holidays"]', 1000);
-    // problem identifiera'
+    //cy.getWaitClick('[data-intercom-target="Sidebar-Organization-Data"]', 1000);
+    cy.get('[data-intercom-target="Sidebar-Organization-Data"]')
+      .eq(3)
+      //.wait(1000)
+      .click();
+    // problem 'identifiera', ? wait ne radi zajedno s eq ?
 
   });
 
