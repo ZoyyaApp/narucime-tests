@@ -30,7 +30,29 @@ describe("Owner can login and crate an appointment / check existing", () => {
       .eq(3)
       //.wait(1000)
       .click();
-    // problem 'identifiera', ? wait ne radi zajedno s eq ?
+    // problem 'identifiera', ?wait ne radi zajedno s eq?
+
+    cy.getWaitClick("[data-cy=button_undefined]", 1000);
+
+    cy.get(".DayPickerInput > input")
+      .click();
+
+    //... ? potreban za odabit datuma
+    
+    cy.get("[data-cy=input_description]")
+      .type("Novi praznik")
+      .should("have.value", "Novi praznik");
+
+    cy.getWaitClick("[data-cy=button_saveChanges]", 1000);
+
+    // neradni dan uspjesno dodan + ?toasty provjera? 
+
+    // ... izmjena neradnog dana
+
+    cy.getWaitClick("[data-cy=tooltip_button_undefined]", 1000);
+    cy.getWaitClick(".mbsc-fr-btn1", 1000);
+
+    // neradni dan uspjesno obrisan + ?toasty provjera? 
 
   });
 
