@@ -32,6 +32,9 @@ Cypress.Commands.add("errorToastVisible", (message) => {
 });
 Cypress.Commands.add("getWaitClick", (name, waitTime) => {
   return cy.get(`${name}`).wait(waitTime).click();
+});
+Cypress.Commands.add("getFirstWaitClick", (name, waitTime) => {
+  return cy.get(`${name}`).first().wait(waitTime).click();
 }); 
 Cypress.Commands.add("getInput", (name) => {
   return cy.get(`[data-cy=input_${name}`);

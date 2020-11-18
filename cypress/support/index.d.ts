@@ -5,6 +5,7 @@
 declare namespace Cypress {
   interface Chainable {
     getWaitClick(name: string, waitTime: number): Chainable<Element>; 
+    getFirstWaitClick(name: string, waitTime: number): Chainable<Element>; 
     /**
      * Custom command to select DOM element by data-cy attribute.
      * @example cy.dataCy('greeting')
