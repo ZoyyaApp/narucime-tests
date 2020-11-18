@@ -11,7 +11,7 @@ describe("User can login and crate an appointment", () => {
 
     cy.getInput("email")
         .type(Cypress.env("userNameKupac"))
-        .should("have.value", Cypress.env("userNameKupac")); // userName -> email
+        .should("have.value", Cypress.env("userNameKupac")); 
     
     cy.getInput("password")
         .type(Cypress.env("password"))
@@ -31,7 +31,8 @@ describe("User can login and crate an appointment", () => {
     cy.getWaitClick("[data-cy=employee_asd]", 1000); //"[data-cy=employee_null]"
 
     // temp quickFix; los, malo bolji od dosadasnjeg
-    if(cy.get(".styles__WizardNoTimeTitle-vntfsx-63").should("exist")){ // while ne radi
+    // style identifier se mijenja, smisliti rjesenje
+    /*if(cy.get(".styles__WizardNoTimeTitle-vntfsx-63").should("exist")){ // while ne radi
         cy.get("[data-cy=button_undefined]")
             .wait(1000)  
             .click();
@@ -40,7 +41,7 @@ describe("User can login and crate an appointment", () => {
                 .wait(1000)
                 .click();
         }
-    }
+    }*/ // obrisati multiline comment kad se dode do neradnog dana ... ispraviti
 
     cy.get(".styles__WizardTimesWrapper-vntfsx-65 > :nth-child(1)").click(); // nastavak gornjeg quickfixa, plan je promjeniti
 
@@ -52,15 +53,20 @@ describe("User can login and crate an appointment", () => {
         .wait(1000)
         .click();
 
-    // provjera pop-up-a?
+    cy.get(".Toastify__toast-container")
+      .should("contain", "Uspješno ste kreirali zahtjev za rezervaciju");
 
     // uspjesno kreiran termin
     
-    cy.get("[data-cy=button_nextStep]") // .style__ButtonLabel-sc-1yo6tdd-1 
+    cy.get("[data-cy=button_nextStep]")
         .wait(5000)
-        .click(); // click ne radi
+        .click(); 
 
   })
 
+  // * BILJESKE: *
+
+  // problem odabira datuma u kalenaru: (1) "while", (2) uporaba stylea koji se mijenja umjesto neceg kao identifier
+  // za arrowLeft se koristi style, dodati identifier?
 
 });
