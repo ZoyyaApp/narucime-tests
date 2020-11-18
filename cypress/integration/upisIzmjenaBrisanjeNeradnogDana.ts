@@ -25,11 +25,7 @@ describe("Owner can login and crate an appointment / check existing", () => {
 
     cy.location('pathname').should('include', '/settings/organization/');
 
-    //cy.getWaitClick('[data-intercom-target="Sidebar-Organization-Data"]', 1000);
-    cy.get('[data-intercom-target="Sidebar-Organization-Data"]')
-      //.wait(1000)
-      .click();
-    // wait ne radi 
+    cy.getWaitClick('[data-intercom-target="Sidebar-Organization-Data"]', 200); // dulji wait ne radi 
 
     cy.getWaitClick("[data-cy=button_New-Holiday-Button]", 1000);
 
@@ -50,7 +46,7 @@ describe("Owner can login and crate an appointment / check existing", () => {
 
     // neradni dan uspjesno dodan  
 
-    cy.getWaitClick(":nth-child(1) > .styles__TableItem-qmnykg-41", 1000); // pronaci zamjenu za style -> uzrokuje problem s dodavnjam novog nreadnog dana kad vec jedan postoji
+    cy.getFirstWaitClick(":nth-child(1) > .styles__TableItem-qmnykg-41", 1000) // uvijek brise prvi neradni dan, dodati da uvijek bira dodan neradnu dan
     
     cy.get(".DayPickerInput > input")
       .click();
@@ -69,18 +65,20 @@ describe("Owner can login and crate an appointment / check existing", () => {
 
     // neradni dan uspjesno izmjenjen  
 
-    cy.getWaitClick("[data-cy=tooltip_button_undefined]", 1000);
-    cy.getWaitClick(".mbsc-fr-btn1", 1000);
+    cy.getFirstWaitClick("[data-cy=tooltip_button_undefined]", 1000);
+    cy.getWaitClick(".mbsc-fr-btn1", 1000); // dodati bolji identifier?
 
     cy.get(".Toastify__toast-container")
       .should("contain", "Praznik je uspješno izmjenjen");
 
     // neradni dan uspjesno obrisan  
 
-    // moguce je imati dva neradna dana na isti datum - maknuti?
+    // * BILJESKE: *
+
+    // moguce je imati dva neradna dana na isti datum, moguce je dodati neradni dan u proslosti - maknuti?
     // problem dodavanja neradnog dana kad jedan postoji - zaobici style?
     // ? doadti da se praznik uvijek dodaje 2 dana od danas ?
-    
+
   });
 
 });
