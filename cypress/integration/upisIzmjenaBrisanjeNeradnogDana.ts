@@ -45,15 +45,42 @@ describe("Owner can login and crate an appointment / check existing", () => {
 
     cy.getWaitClick("[data-cy=button_saveChanges]", 1000);
 
-    // neradni dan uspjesno dodan + ?toasty provjera? 
+    cy.get(".Toastify__toast-container")
+      .should("contain", "Novi praznik je upisan");
 
-    // ... izmjena neradnog dana
+    // neradni dan uspjesno dodan  
+
+    cy.getWaitClick(":nth-child(1) > .styles__TableItem-qmnykg-41", 1000); // pronaci zamjenu za style -> uzrokuje problem s dodavnjam novog nreadnog dana kad vec jedan postoji
+    
+    cy.get(".DayPickerInput > input")
+      .click();
+
+    cy.get('[aria-label="ned. 22. stu. 2020"]') // ?dodati da uvijek bira 2 dana od postojeceg datuma?
+      .click();
+    
+    cy.get("[data-cy=input_description]")
+      .type(" - izmjena")
+      .should("have.value", "Novi praznik - izmjena");
+
+    cy.getWaitClick("[data-cy=button_saveChanges]", 1000);
+
+    cy.get(".Toastify__toast-container")
+      .should("contain", "Praznik je uspješno izmjenjen");
+
+    // neradni dan uspjesno izmjenjen  
 
     cy.getWaitClick("[data-cy=tooltip_button_undefined]", 1000);
     cy.getWaitClick(".mbsc-fr-btn1", 1000);
 
-    // neradni dan uspjesno obrisan + ?toasty provjera? 
+    cy.get(".Toastify__toast-container")
+      .should("contain", "Praznik je uspješno izmjenjen");
 
+    // neradni dan uspjesno obrisan  
+
+    // moguce je imati dva neradna dana na isti datum - maknuti?
+    // problem dodavanja neradnog dana kad jedan postoji - zaobici style?
+    // ? doadti da se praznik uvijek dodaje 2 dana od danas ?
+    
   });
 
 });
