@@ -11,7 +11,7 @@ describe("Owner can login and crate an appointment / check existing", () => {
 
     cy.getInput("email")
         .type(Cypress.env("userName"))
-        .should("have.value", Cypress.env("userName")); // userName -> email
+        .should("have.value", Cypress.env("userName")); 
     
     cy.getInput("password")
         .type(Cypress.env("password"))
@@ -27,18 +27,18 @@ describe("Owner can login and crate an appointment / check existing", () => {
 
     //cy.getWaitClick('[data-intercom-target="Sidebar-Organization-Data"]', 1000);
     cy.get('[data-intercom-target="Sidebar-Organization-Data"]')
-      .eq(3)
       //.wait(1000)
       .click();
-    // problem 'identifiera', ?wait ne radi zajedno s eq?
+    // wait ne radi 
 
-    cy.getWaitClick("[data-cy=button_undefined]", 1000);
+    cy.getWaitClick("[data-cy=button_New-Holiday-Button]", 1000);
 
     cy.get(".DayPickerInput > input")
       .click();
 
-    //... ? potreban za odabit datuma
-    
+    cy.get('[aria-label="pet. 20. stu. 2020"]') // ?dodati da uvijek bira 2 dana od danas?
+      .click();
+
     cy.get("[data-cy=input_description]")
       .type("Novi praznik")
       .should("have.value", "Novi praznik");
