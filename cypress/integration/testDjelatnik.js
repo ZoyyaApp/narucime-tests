@@ -117,5 +117,8 @@ context('Actions', () => {
         // .should('not.contain',name1+' '+surname1)
         // .and('not.contain',mail)
       })
-
 })
+
+
+
+
