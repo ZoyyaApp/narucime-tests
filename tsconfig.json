@@ -18,5 +18,5 @@
     "jsx": "react",
     "isolatedModules": true
   },
-  "include": ["**/*.ts", "src"]
+  "include": ["**/*.ts", "src", "cypress/integration/bugs/settingsResizeObserver.js", "cypress/support/commands.js", "cypress/integration/bugs/settingsResizeObserver.js", "cypress/integration/bugs/settingsResizeObserver.js"]
 }
