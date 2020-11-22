@@ -53,8 +53,6 @@ describe("Owner can login and crate an appointment / check existing", () => {
 
     // neradni dan uspjesno dodan  
 
-    // posebni test za neradni dan u proslosti?
-
   });
   
 });
