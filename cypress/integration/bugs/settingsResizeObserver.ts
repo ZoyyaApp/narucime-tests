@@ -28,4 +28,5 @@ describe("Owner can login and crate an appointment / check existing", () => {
     cy.getWaitClick('[data-intercom-target="Sidebar-Organization-Data"]', 1000);
 
   });
+  
 });

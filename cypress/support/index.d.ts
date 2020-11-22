@@ -2,8 +2,6 @@
 // load type definitions that come with Cypress module
 /// <reference types="cypress" />
 
-import { List } from "cypress/types/lodash";
-
 declare namespace Cypress {
   interface Chainable {
     getWaitClick(name: string, waitTime: number): Chainable<Element>; 
