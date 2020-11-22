@@ -23,7 +23,7 @@ describe("User can login and crate an appointment", () => {
         .should('match', /\/myLocations\/*$/)
         .wait(1000);
 
-    cy.getWaitClick("[data-cy=CypressTest]", 1500);
+    cy.getWaitClick("[data-cy=CypressTest]", 2000);
     cy.getWaitClick("[data-cy=button_newBookingRequest]", 2000);
     cy.getWaitClick(".ArrowLeft__StyledIcon-qst3h5-0", 1000); // "losa oznaka" jer je quickFix za bug, ipak identifier za arrowLeft?
     cy.getWaitClick('[data-cy="osnovna usluga"]', 1000);
