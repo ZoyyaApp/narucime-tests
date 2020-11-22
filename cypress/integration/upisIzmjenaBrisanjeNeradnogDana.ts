@@ -58,7 +58,8 @@ describe("Owner can login and crate an appointment / check existing", () => {
     //cy.get(":nth-child(1) > .styles__TableItem-qmnykg-41").should("exist"); 
     // contains umjesto get
     cy.getFirstWaitClick(":nth-child(1) > .styles__TableItem-qmnykg-41", 1000) // uvijek brise prvi neradni dan, dodati da uvijek bira dodan neradnu dan
-    
+    // test trenutacno uopce i radi ako nema prijasnjih neradnih dana -> promjeniti, zajedno fix s identificiranjem pojedinog neradnog dana
+
     cy.get(".DayPickerInput > input")
       .click();
 
@@ -86,9 +87,10 @@ describe("Owner can login and crate an appointment / check existing", () => {
 
     // * BILJESKE: *
 
-    // problem odabira neradnog dana kad jedan postoji - zaobici style, "jedinstveni" identifier, ne samo redak-stupac?
     // ? doadti da se praznik uvijek dodaje 2 dana od danas ?
-    // dodati da se uvijek ureduje i brise novo dodan neradni dan, ne prvi koji se pronade - potreban drugaciji identifier
+    // problem identificiranja neradnog dana:
+      // (1) problem odabira neradnog dana kad jedan postoji - zaobici style, "jedinstveni" identifier, ne samo redak-stupac?
+      // (2) dodati da se uvijek ureduje i brise novo dodan neradni dan, ne prvi koji se pronade - potreban drugaciji identifier
     
   });
 
