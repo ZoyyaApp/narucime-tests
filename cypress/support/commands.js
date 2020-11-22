@@ -1,4 +1,5 @@
 import "cypress-localstorage-commands";
+
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
@@ -24,6 +25,19 @@ import "cypress-localstorage-commands";
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+Cypress.Commands.add("menuListItems", (parent,list,returnthis)=> {
+
+  cy.get(parent).click();
+
+  for(var i = 0, size=Object.keys(list).length; i<size ;i++){
+    var item = list[i]
+    cy.get('.react-select__menu-list').contains(item);
+  }
+  
+  return cy.get('.react-select__menu-list').contains[list[returnthis]];
+  
+});
 
 Cypress.Commands.add("errorToastVisible", (message) => {
   cy.get(".Toastify__toast-body", { timeout: 5000 })
