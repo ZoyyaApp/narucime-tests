@@ -4,6 +4,8 @@ export const module = 1;
 
 describe("Owner can login and crate an appointment / check existing", () => {
 
+  // TEST TRENUTNO NE RADI
+
   it("Fill the login form and submit with enter", () => {
     cy.visit("/login");
 

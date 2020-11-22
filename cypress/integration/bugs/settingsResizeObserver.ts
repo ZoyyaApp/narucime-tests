@@ -25,7 +25,9 @@ describe("Owner can login and crate an appointment / check existing", () => {
 
     cy.location('pathname').should('include', '/settings/organization/');
 
-    cy.getWaitClick('[data-intercom-target="Sidebar-Organization-Data"]', 1000);
+    cy.getWaitClick('[data-intercom-target="Sidebar-Organization-Data"]', 1000); 
+    
+    // test ovdje pada -> "uspjesno"
 
   });
   
