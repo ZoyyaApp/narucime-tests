@@ -86,9 +86,6 @@ describe("Owner can login and crate an appointment / check existing", () => {
 
     // * BILJESKE: *
 
-    // moguce je imati dva neradna dana na isti datum, moguce je dodati neradni dan u proslosti - maknuti?
-    // ? enter ne prema uredivanje nego izlazi ? - samo neintuitivno
-
     // problem odabira neradnog dana kad jedan postoji - zaobici style, "jedinstveni" identifier, ne samo redak-stupac?
     // ? doadti da se praznik uvijek dodaje 2 dana od danas ?
     // dodati da se uvijek ureduje i brise novo dodan neradni dan, ne prvi koji se pronade - potreban drugaciji identifier
