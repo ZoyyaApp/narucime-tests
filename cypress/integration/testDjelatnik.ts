@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
-const { createVoidZero } = require("typescript")
 
+export const module = 1;
 
 // Podatci stvorenog djelatnika
 
