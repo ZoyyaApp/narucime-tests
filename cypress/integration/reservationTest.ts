@@ -5,8 +5,12 @@
  
 /// <reference types="cypress" />
 
-var emailLoginSwitch=false
-var reservationdate
+
+
+export const module = 1;
+
+let emailLoginSwitch=false;
+var reservationdate;
  
 context('Actions', () => {
     beforeEach(() => {
