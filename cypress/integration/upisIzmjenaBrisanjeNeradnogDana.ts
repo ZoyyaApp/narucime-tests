@@ -33,7 +33,10 @@ describe("Owner can login and crate an appointment / check existing", () => {
       .click();
 
     cy.get('[aria-label="pet. 20. stu. 2020"]') // ?dodati da uvijek bira 2 dana od danas?
-      .click();
+      .click()
+    // zanemariti prvih 5 znakova
+
+    //cy.get("[data-cy=iasasdsdnput_description]");
 
     let text:string = "Novi praznik";
 
@@ -49,6 +52,7 @@ describe("Owner can login and crate an appointment / check existing", () => {
     // neradni dan uspjesno dodan  
 
     //cy.get(":nth-child(1) > .styles__TableItem-qmnykg-41").should("exist"); 
+    // contains umjesto get
     cy.getFirstWaitClick(":nth-child(1) > .styles__TableItem-qmnykg-41", 1000) // uvijek brise prvi neradni dan, dodati da uvijek bira dodan neradnu dan
     
     cy.get(".DayPickerInput > input")
@@ -79,11 +83,12 @@ describe("Owner can login and crate an appointment / check existing", () => {
     // * BILJESKE: *
 
     // moguce je imati dva neradna dana na isti datum, moguce je dodati neradni dan u proslosti - maknuti?
+    // ? enter ne prema uredivanje nego izlazi ? - samo neintuitivno
+
     // problem odabira neradnog dana kad jedan postoji - zaobici style, "jedinstveni" identifier, ne samo redak-stupac?
     // ? doadti da se praznik uvijek dodaje 2 dana od danas ?
     // dodati da se uvijek ureduje i brise novo dodan neradni dan, ne prvi koji se pronade - potreban drugaciji identifier
-    // ? enter ne prema uredivanje nego izlazi ? - samo neintuitivno
-
+    
   });
 
 });
