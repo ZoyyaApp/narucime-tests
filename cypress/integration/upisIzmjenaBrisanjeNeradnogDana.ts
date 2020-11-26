@@ -36,6 +36,8 @@ describe("Owner can login and crate an appointment / check existing", () => {
     cy.get(".DayPickerInput > input")
       .click();
 
+
+    // jos netestirano buduci da login ne radi
     var date = cy.getFormatedDate(2);
 
     cy.get('[aria-label="' + date +'"]') // ?dodati da uvijek bira 2 dana od danas?
@@ -67,6 +69,7 @@ describe("Owner can login and crate an appointment / check existing", () => {
     
     var date = cy.getFormatedDate(2);
 
+    // jos netestirano buduci da login ne radi
     cy.get('[aria-label="' + date +'"]') // ?dodati da uvijek bira 2 dana od postojeceg datuma? // ned. 22. stu. 2020
       .click();
     
