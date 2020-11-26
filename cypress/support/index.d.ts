@@ -65,5 +65,13 @@ declare namespace Cypress {
      */
     menuListItems(parent: string, item: list, returnthis: int): Chainable<Element>;
 
+    /**
+    * returns a date in the following format: ned. 22. stu. 2020
+    * @param futureDays date for how many days in the future to return
+    * 
+    * @example getFormatedDate(2);
+    */
+    getFormatedDate(futureDays: number);
+
   }
 }

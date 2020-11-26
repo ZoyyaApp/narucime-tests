@@ -31,18 +31,23 @@ Cypress.Commands.add("errorToastVisible", (message) => {
     .contains(message)
     .should("exist");
 });
+
 Cypress.Commands.add("getWaitClick", (name, waitTime) => {
   return cy.get(`${name}`).wait(waitTime).click();
 });
+
 Cypress.Commands.add("getFirstWaitClick", (name, waitTime) => {
   return cy.get(`${name}`).first().wait(waitTime).click();
 }); 
+
 Cypress.Commands.add("getInput", (name) => {
   return cy.get(`[data-cy=input_${name}`);
 });
+
 Cypress.Commands.add("getButton", (name) => {
   return cy.get(`[data-cy=button_${name}`);
 });
+
 Cypress.Commands.add("login", (userName, password) => {
   cy.request({
     method: "POST",
@@ -79,6 +84,7 @@ Cypress.Commands.add("login", (userName, password) => {
       cy.setLocalStorage("token", body.data.user.login.payload.token);
     });
 });
+
 Cypress.Commands.add("menuListItems", (parent,list,returnthis)=> {
 
   cy.get(parent).click();
@@ -90,4 +96,50 @@ Cypress.Commands.add("menuListItems", (parent,list,returnthis)=> {
   
   return cy.get('.react-select__menu-list').contains[list[returnthis]];
   
+});
+
+Cypress.Commands.add("getFormatedDate", (futureDays) =>{ 
+  
+  var today = new Date();
+  var name = String();
+  
+  var dd = String(today.getDate() + future_days); 
+  var mm = Number(today.getMonth()); 
+  var yyyy = today.getFullYear();
+
+  mm++;
+
+  if(mm == 1 || mm == 3 || mm == 5 || mm == 7 || mm == 8 || mm == 10 || mm == 12){
+    if(dd==32){
+      dd=1; mm++;
+    }
+  }
+  
+  if(mm == 4 || mm == 6 || mm == 9 || mm == 11){
+    if(dd==31){
+      dd=1; mm++;
+    }
+  }
+
+  if(mm == 2){
+    if(dd==30){
+      dd=1; mm++;
+    }
+  }
+
+  if(mm=12){
+    mm=0; yyyy++; dd=1;
+  }
+
+  mm--;
+  var monthNameArr = ["sje", "velj", "ozu", "tra", "svi", "lip", "srp", "kol", "ruj", "lis", "stu", "pro"];
+  var month = monthNameArr[mm];
+
+  var weekDay = (today.getDay() + futureDays)%7;
+  var weekDayNameArr = ["pon", "uto", "sri", "cet", "pet", "sub", "ned"];
+  name = weekDayNameArr[weekDay];
+      
+  var danas = name + '. ' + dd + '. ' + month + '. ' + yyyy;
+  return danas;
+
 });

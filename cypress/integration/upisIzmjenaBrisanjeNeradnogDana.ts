@@ -36,9 +36,11 @@ describe("Owner can login and crate an appointment / check existing", () => {
     cy.get(".DayPickerInput > input")
       .click();
 
-    cy.get('[aria-label="pet. 20. stu. 2020"]') // ?dodati da uvijek bira 2 dana od danas?
+    var date = cy.getFormatedDate(2);
+
+    cy.get('[aria-label="' + date +'"]') // ?dodati da uvijek bira 2 dana od danas?
       .click()
-    // zanemariti prvih 5 znakova
+    // zanemariti prvih 5 znakova od pocetka navodnika...
 
     //cy.get("[data-cy=iasasdsdnput_description]");
 
@@ -62,16 +64,10 @@ describe("Owner can login and crate an appointment / check existing", () => {
     cy.get(".DayPickerInput > input")
       .click();
 
-    var today = new Date();
-    var future_days = 2; // dodajemo neradni dan 2 dana od danas
-    var dd = String(today.getDate() + future_days); 
-    var mm = String(today.getMonth() + 1); // mjesec od indexa 0
-    var yyyy = today.getFullYear();
-      
-    var danas = dd + '. ' + mm + '. ' + yyyy;
-    console.log(danas);
+    
+    var date = cy.getFormatedDate(2);
 
-    cy.get('[aria-label="ned. 22. stu. 2020"]') // ?dodati da uvijek bira 2 dana od postojeceg datuma?
+    cy.get('[aria-label="' + date +'"]') // ?dodati da uvijek bira 2 dana od postojeceg datuma? // ned. 22. stu. 2020
       .click();
     
     cy.get("[data-cy=input_description]")
@@ -84,7 +80,7 @@ describe("Owner can login and crate an appointment / check existing", () => {
 
     // neradni dan uspjesno izmjenjen  
 
-    cy.getFirstWaitClick("[data-cy=tooltip_button_undefined]", 1000);
+    cy.getFirstWaitClick("[data-cy=tooltip_button_undefined]", 1000); // promjeniti button_undefined za brisanje?
     cy.getWaitClick(".mbsc-fr-btn1", 1000); // dodati bolji identifier?
 
     cy.errorToastVisible("Praznik je uspješno izmjenjen");
@@ -94,6 +90,8 @@ describe("Owner can login and crate an appointment / check existing", () => {
     // * BILJESKE: *
 
     // ? doadti da se praznik uvijek dodaje 2 dana od danas ?
+    // problematicni identifieri na kraju pri brisanju
+
     // problem identificiranja neradnog dana:
       // (1) problem odabira neradnog dana kad jedan postoji - zaobici style, "jedinstveni" identifier, ne samo redak-stupac?
       // (2) dodati da se uvijek ureduje i brise novo dodan neradni dan, ne prvi koji se pronade - potreban drugaciji identifier
