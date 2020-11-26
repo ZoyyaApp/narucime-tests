@@ -5,13 +5,32 @@
 declare namespace Cypress {
   interface Chainable {
     
-    getWaitClick(name: string, waitTime: number): Chainable<Element>; 
-    getFirstWaitClick(name: string, waitTime: number): Chainable<Element>; 
     /**
-     * Custom command to select DOM element by data-cy attribute.
-     * @example cy.dataCy('greeting')
+     * gets Toastify__toast and checks if desired message is displayed
+     * @param message desired message to be in toast pop-up
+     * 
+     * @example cy.errorToastVisible('Ime je obavezan podatak');
      */
-    login(userName?: string, password?: string): Chainable<Element>;
+    errorToastVisible(message: string): Chainable<Element>;
+
+    /**
+    * combines get, wait and click commands
+    * @param name name of the selector criteria
+    * @param waitTime time for the wait() command
+    * 
+    * @example  cy.getWaitClick('[data-intercom-target="Sidebar-Settings"]', 1000);
+    */
+    getWaitClick(name: string, waitTime: number): Chainable<Element>; 
+
+    /**
+     * combines get, first, wait and click commands
+     * @param name name of the selector criteria 
+     * @param waitTime time for the wait() command
+     * 
+     * @example cy.getFirstWaitClick("[data-cy=tooltip_button_undefined]", 1000);
+     */
+    getFirstWaitClick(name: string, waitTime: number): Chainable<Element>; 
+
     /**
      * returns the input with a ["data-cy=input_${name}"] selector criteria
      * @param name name of the input field
@@ -21,19 +40,20 @@ declare namespace Cypress {
     /**
      * returns the button with a ["data-cy=button_${name}"] selector criteria
      * @param name name of the input field
+     * 
+     * @example cy.getButton("submit").click();
      */
     getButton(name: string): Chainable<Element>;
+
     /**
-     * add description
-     */
-    errorToastVisible(message: string): Chainable<Element>;
-    /**
-     * gets Toastify__toast and checks if desired message is displayed
-     * @param message desired message to be in toast pop-up
+     * logs in using provided username and password vars
+     * @param userName username with which to login
+     * @param password password with which to login
      * 
-     * @example cy.errorToastVisible('Ime je obavezan podatak');
+     * @example  -> zasad korisrimo "rucno" jer vise provjeravamo; to "prebaciti" u ovu fja i dokumentirati
      */
-    menuListItems(parent: string, item: list, returnthis: int): Chainable<Element>;
+    login(userName?: string, password?: string): Chainable<Element>;
+
     /**
      * iterates through a dropdown menu and checks the values
      * returns specified value
@@ -43,5 +63,7 @@ declare namespace Cypress {
      * 
      * @example cy.menuListItems('[data-cy=button]',listofitems,0)
      */
+    menuListItems(parent: string, item: list, returnthis: int): Chainable<Element>;
+
   }
 }
