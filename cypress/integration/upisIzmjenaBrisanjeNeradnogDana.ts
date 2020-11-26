@@ -50,8 +50,7 @@ describe("Owner can login and crate an appointment / check existing", () => {
 
     cy.getWaitClick("[data-cy=button_saveChanges]", 1000);
 
-    cy.get(".Toastify__toast-container")
-      .should("contain", "Novi praznik je upisan");
+    cy.errorToastVisible("Novi praznik je upisan");
 
     // neradni dan uspjesno dodan  
 
@@ -63,25 +62,32 @@ describe("Owner can login and crate an appointment / check existing", () => {
     cy.get(".DayPickerInput > input")
       .click();
 
+    var today = new Date();
+    var future_days = 2; // dodajemo neradni dan 2 dana od danas
+    var dd = String(today.getDate() + future_days); 
+    var mm = String(today.getMonth() + 1); // mjesec od indexa 0
+    var yyyy = today.getFullYear();
+      
+    var danas = dd + '. ' + mm + '. ' + yyyy;
+    console.log(danas);
+
     cy.get('[aria-label="ned. 22. stu. 2020"]') // ?dodati da uvijek bira 2 dana od postojeceg datuma?
       .click();
     
     cy.get("[data-cy=input_description]")
       .type(" - izmjena")
-      .should("have.value", text + " - izmjena");
+      .should("have.value", text + /*" " + danas+*/ " - izmjena");
 
     cy.getWaitClick("[data-cy=button_saveChanges]", 1000);
 
-    cy.get(".Toastify__toast-container")
-      .should("contain", "Praznik je uspješno izmjenjen");
+    cy.errorToastVisible("Praznik je uspješno izmjenjen");
 
     // neradni dan uspjesno izmjenjen  
 
     cy.getFirstWaitClick("[data-cy=tooltip_button_undefined]", 1000);
     cy.getWaitClick(".mbsc-fr-btn1", 1000); // dodati bolji identifier?
 
-    cy.get(".Toastify__toast-container")
-      .should("contain", "Praznik je uspješno izmjenjen");
+    cy.errorToastVisible("Praznik je uspješno izmjenjen");
 
     // neradni dan uspjesno obrisan  
 

@@ -4,6 +4,7 @@
 
 declare namespace Cypress {
   interface Chainable {
+    
     getWaitClick(name: string, waitTime: number): Chainable<Element>; 
     getFirstWaitClick(name: string, waitTime: number): Chainable<Element>; 
     /**
@@ -22,7 +23,16 @@ declare namespace Cypress {
      * @param name name of the input field
      */
     getButton(name: string): Chainable<Element>;
+    /**
+     * add description
+     */
     errorToastVisible(message: string): Chainable<Element>;
+    /**
+     * gets Toastify__toast and checks if desired message is displayed
+     * @param message desired message to be in toast pop-up
+     * 
+     * @example cy.errorToastVisible('Ime je obavezan podatak');
+     */
     menuListItems(parent: string, item: list, returnthis: int): Chainable<Element>;
     /**
      * iterates through a dropdown menu and checks the values
