@@ -140,7 +140,6 @@ Cypress.Commands.add("getFormatedDate", (futureDays) =>{
   var weekDayNameArr = ["pon", "uto", "sri", "cet", "pet", "sub", "ned"];
   name = weekDayNameArr[weekDay];
       
-  cy.log(dd,month,yyyy);
   var danas = String(name + '. ' + dd + '. ' + month + '. ' + yyyy);
   return cy.wrap(danas);
 
