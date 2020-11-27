@@ -30,7 +30,7 @@ Cypress.Commands.add("errorToastVisible", (message) => {
   cy.get(".Toastify__toast-body", { timeout: 5000 })
     .contains(message)
     .should("exist");
-});
+}); // + return?
 
 Cypress.Commands.add("getWaitClick", (name, waitTime) => {
   return cy.get(`${name}`).wait(waitTime).click();
@@ -103,9 +103,9 @@ Cypress.Commands.add("getFormatedDate", (futureDays) =>{
   var today = new Date();
   var name = String();
   
-  var dd = String(today.getDate() + future_days); 
+  var dd = String(today.getDate() + futureDays); 
   var mm = Number(today.getMonth()); 
-  var yyyy = today.getFullYear();
+  var yyyy = String(today.getFullYear());
 
   mm++;
 
@@ -127,19 +127,21 @@ Cypress.Commands.add("getFormatedDate", (futureDays) =>{
     }
   }
 
-  if(mm=12){
+  if(mm==12){
     mm=0; yyyy++; dd=1;
   }
 
   mm--;
+
   var monthNameArr = ["sje", "velj", "ozu", "tra", "svi", "lip", "srp", "kol", "ruj", "lis", "stu", "pro"];
   var month = monthNameArr[mm];
 
-  var weekDay = (today.getDay() + futureDays)%7;
+  var weekDay = (today.getDay() + futureDays - 1) % 7;
   var weekDayNameArr = ["pon", "uto", "sri", "cet", "pet", "sub", "ned"];
   name = weekDayNameArr[weekDay];
       
-  var danas = name + '. ' + dd + '. ' + month + '. ' + yyyy;
-  return danas;
+  cy.log(dd,month,yyyy);
+  var danas = String(name + '. ' + dd + '. ' + month + '. ' + yyyy);
+  return cy.wrap(danas);
 
 });
