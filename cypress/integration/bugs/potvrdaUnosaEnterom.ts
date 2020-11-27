@@ -39,10 +39,7 @@ describe("Owner can login and crate an appointment / check existing", () => {
 
     cy.get('[aria-label="pet. 20. stu. 2020"]') // ?dodati da uvijek bira 2 dana od danas?
       .click()
-    // zanemariti prvih 5 znakova
-
-    //cy.get("[data-cy=iasasdsdnput_description]");
-
+    
     let text:string = "Novi praznik";
 
     cy.get("[data-cy=input_description]")
