@@ -9,7 +9,7 @@
 
 export const module = 1;
 
-let emailLoginSwitch=false;
+var emailLoginSwitch=false;
 var reservationdate;
  
 context('Actions', () => {
