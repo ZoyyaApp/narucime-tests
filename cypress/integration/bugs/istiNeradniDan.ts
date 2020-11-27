@@ -4,7 +4,10 @@ export const module = 1;
 
 describe("Owner can login and crate an appointment / check existing", () => {
 
-  // TEST TRENUTNO NE RADI
+  // BILJESKE:
+
+  // dodati da "dinamicki bira datum"; kod u upisIzmjena...
+  // ocekivano ponasanje: toast koji ne dopusta dva ista neradna dana
 
   it("Fill the login form and submit with enter", () => {
     cy.visit("/login");
@@ -36,9 +39,6 @@ describe("Owner can login and crate an appointment / check existing", () => {
 
     cy.get('[aria-label="pet. 20. stu. 2020"]') // ?dodati da uvijek bira 2 dana od danas?
       .click()
-    // zanemariti prvih 5 znakova
-
-    cy.get("[data-cy=iasasdsdnput_description]");
 
     let text:string = "Novi praznik";
 
@@ -47,11 +47,28 @@ describe("Owner can login and crate an appointment / check existing", () => {
       .should("have.value", text);
 
     cy.getWaitClick("[data-cy=button_saveChanges]", 1000);
-
-    cy.get(".Toastify__toast-container")
-      .should("contain", "Novi praznik je upisan");
+  
+    cy.errorToastVisible("A new holiday has been added");
 
     // neradni dan uspjesno dodan  
+
+    cy.getWaitClick("[data-cy=button_New-Holiday-Button]", 1000);
+
+    cy.get(".DayPickerInput > input")
+      .click();
+
+    cy.get('[aria-label="pet. 20. stu. 2020"]') // ?dodati da uvijek bira 2 dana od danas?
+      .click()
+
+     cy.get("[data-cy=input_description]")
+      .type(text)
+      .should("have.value", text);
+
+    cy.getWaitClick("[data-cy=button_saveChanges]", 1000);
+
+    cy.errorToastVisible("A holiday with the same date already exists");
+
+    // ocekivano ponasanje: toast koji ne dopusta dva ista neradna dana
 
   });
   

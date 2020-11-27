@@ -4,7 +4,10 @@ export const module = 1;
 
 describe("Owner can login and crate an appointment / check existing", () => {
 
-  // TEST TRENUTNO NE RADI
+  // BILJESKE
+
+  // dodati da "dinamicki bira datum"; kod u upisIzmjena...
+  // ocekivanjo ponsasanje: pritiskom enetera se Novi praznik sprema
 
   it("Fill the login form and submit with enter", () => {
     cy.visit("/login");
@@ -38,47 +41,23 @@ describe("Owner can login and crate an appointment / check existing", () => {
       .click()
     // zanemariti prvih 5 znakova
 
-    cy.get("[data-cy=iasasdsdnput_description]");
+    //cy.get("[data-cy=iasasdsdnput_description]");
 
     let text:string = "Novi praznik";
 
     cy.get("[data-cy=input_description]")
       .type(text)
-      .should("have.value", text);
+      .should("have.value", text)
+      .type("{enter}");
 
-    cy.getWaitClick("[data-cy=button_saveChanges]", 1000);
+    cy.errorToastVisible("A new holiday has been added");
 
-    cy.get(".Toastify__toast-container")
-      .should("contain", "Novi praznik je upisan");
-
-    // neradni dan uspjesno dodan  
-
-    //cy.get(":nth-child(1) > .styles__TableItem-qmnykg-41").should("exist"); 
-    // contains umjesto get
-    cy.getFirstWaitClick(":nth-child(1) > .styles__TableItem-qmnykg-41", 1000) // uvijek brise prvi neradni dan, dodati da uvijek bira dodan neradnu dan
+    /* 
+    test prisskom na enter nakon unosa teksta odlazi s https://narucime-dev.azurewebsites.net/bnenl/115/settings/organization/locations/115/holidays/new
+    i vraca se na https://narucime-dev.azurewebsites.net/bnenl/115/settings/organization/locations/115/holidays 
     
-    cy.get(".DayPickerInput > input")
-      .click();
-
-    cy.get('[aria-label="ned. 22. stu. 2020"]') // ?dodati da uvijek bira 2 dana od postojeceg datuma?
-      .click();
-    
-    cy.get("[data-cy=input_description]")
-      .type(" - izmjena")
-      .should("have.value", text + " - izmjena");
-
-    cy.getWaitClick("[data-cy=button_saveChanges]", 1000);
-
-    cy.get(".Toastify__toast-container")
-      .should("contain", "Praznik je uspješno izmjenjen");
-
-    // neradni dan uspjesno izmjenjen  
-
-    cy.getFirstWaitClick("[data-cy=tooltip_button_undefined]", 1000);
-    cy.getWaitClick(".mbsc-fr-btn1", 1000); // dodati bolji identifier?
-
-    cy.get(".Toastify__toast-container")
-      .should("contain", "Praznik je uspješno izmjenjen");
+    ocekivanjo ponsasanje: pritiskom enetera se Novi praznik sprema
+    */
  
     });
     
