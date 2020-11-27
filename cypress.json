@@ -3,5 +3,5 @@
   "viewportWidth": 1440,
   "chromeWebSecurity": false,
   "experimentalFetchPolyfill": true,
-  "baseUrl": "https://app.zoyya.com/login"
+  "baseUrl": "https://narucime-dev.azurewebsites.net"
 }
