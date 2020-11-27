@@ -2,7 +2,7 @@
 
 export const module = 1;
 
-describe("Owner can login and crate an appointment / check existing", () => {
+describe("Owner can login and crate an appointment / edit existing / delete", () => {
 
   it("Fill the login form and submit with enter", () => {
     cy.visit("/login");
@@ -38,14 +38,31 @@ describe("Owner can login and crate an appointment / check existing", () => {
 
 
     // jos netestirano buduci da login ne radi
-    var date = cy.getFormatedDate(2);
+    // dateIdentifier je uvijek object Obcject
 
-    cy.get('[aria-label="' + date +'"]') // ?dodati da uvijek bira 2 dana od danas?
+    var dateIdentifier;
+
+    cy.getFormatedDate(2).then(returned_value => 
+      cy.log("1", returned_value));
+      
+    cy.getFormatedDate(2).then(returned_value => 
+      dateIdentifier = returned_value);  
+      
+    cy.log("2", dateIdentifier);
+
+    cy.getFormatedDate(2).then(returned_value => 
+      cy.log("3", '[aria-label="' + returned_value +'"]'));
+    
+    cy.getFormatedDate(2).then(returned_value => 
+      dateIdentifier = '[aria-label="' + returned_value +'"]');
+    
+    cy.log("4", dateIdentifier);
+
+    cy.get(dateIdentifier) 
       .click()
-    // zanemariti prvih 5 znakova od pocetka navodnika...
 
-    //cy.get("[data-cy=iasasdsdnput_description]");
-
+    // kraj netestiranog problematicnog dijela
+  
     let text:string = "Novi praznik";
 
     cy.get("[data-cy=input_description]")
@@ -66,11 +83,10 @@ describe("Owner can login and crate an appointment / check existing", () => {
     cy.get(".DayPickerInput > input")
       .click();
 
-    
-    var date = cy.getFormatedDate(2);
+    //var date = cy.getFormatedDate(2);
 
     // jos netestirano buduci da login ne radi
-    cy.get('[aria-label="' + date +'"]') // ?dodati da uvijek bira 2 dana od postojeceg datuma? // ned. 22. stu. 2020
+    cy.get('[aria-label="' + dateIdentifier +'"]') // ?dodati da uvijek bira 2 dana od postojeceg datuma? // ned. 22. stu. 2020
       .click();
     
     cy.get("[data-cy=input_description]")
