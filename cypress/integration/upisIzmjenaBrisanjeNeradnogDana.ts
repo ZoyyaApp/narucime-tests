@@ -5,12 +5,8 @@ export const module = 1;
 // * BILJESKE: *
 
 // problem toasta - samo jednog
-
-// problematicni identifieri na kraju pri brisanju
-  // problem identificiranja neradnog dana:
-    // (1) problem odabira neradnog dana kad jedan postoji - zaobici style, "jedinstveni" identifier, ne samo redak-stupac?
-    // (2) dodati da se uvijek ureduje i brise novo dodan neradni dan, ne prvi koji se pronade - potreban drugaciji identifier
-    
+// problematicni identifieri 
+   
 
 describe("Owner can login and crate an appointment / edit existing / delete", () => {
 
@@ -62,15 +58,10 @@ describe("Owner can login and crate an appointment / edit existing / delete", ()
 
     // neradni dan uspjesno dodan  
 
-    //cy.get(":nth-child(1) > .styles__TableItem-qmnykg-41").should("exist"); 
-    // contains umjesto get
-    
     cy.get(".styles__TableStyled-oksjky-0")
       .contains(text)
       .wait(1000)
       .click();
-    
-    //cy.getFirstWaitClick(":nth-child(1) > .styles__TableItem-qmnykg-41", 1000) // uvijek brise prvi neradni dan, dodati da uvijek bira dodan neradnu dan
     
     cy.get(".DayPickerInput > input")
       .click();
@@ -92,9 +83,6 @@ describe("Owner can login and crate an appointment / edit existing / delete", ()
     //cy.errorToastVisible("The holiday has been successfully modified"); // "Praznik je uspješno izmjenjen"
 
     // neradni dan uspjesno izmjenjen  
-
-    //cy.getFirstWaitClick("[data-cy=tooltip_button_undefined]", 1000); // promjeniti button_undefined za brisanje?
-    
 
     cy.get(".styles__TableStyled-oksjky-0")
       .contains(text)
