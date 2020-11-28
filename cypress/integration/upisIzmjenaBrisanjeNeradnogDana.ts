@@ -12,7 +12,7 @@ export const module = 1;
 
 describe("Owner can login and crate an appointment / edit existing / delete", () => {
 
-  it("Fill the login form and submit with enter", () => {
+  it("Test creating, editing and deleting an appointment", () => {
     cy.visit("/login");
 
     cy.get("[data-cy=button_email]").click();
