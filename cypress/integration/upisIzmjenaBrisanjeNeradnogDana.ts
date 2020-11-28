@@ -5,7 +5,9 @@ export const module = 1;
 // * BILJESKE: *
 
 // problem toasta - samo jednog
+
 // problematicni identifieri 
+//  -> problem brisanja vise od jednog neradnog dana
    
 
 describe("Owner can login and crate an appointment / edit existing / delete", () => {
@@ -53,7 +55,6 @@ describe("Owner can login and crate an appointment / edit existing / delete", ()
       .should("have.value", text);
 
     cy.getWaitClick("[data-cy=button_saveChanges]", 1000);
-
     cy.errorToastVisible("A new holiday has been added"); // "Novi praznik je upisan"
 
     // neradni dan uspjesno dodan  
@@ -79,7 +80,6 @@ describe("Owner can login and crate an appointment / edit existing / delete", ()
       .should("have.value", text + " - izmjena");
 
     cy.getWaitClick("[data-cy=button_saveChanges]", 1000);
-
     //cy.errorToastVisible("The holiday has been successfully modified"); // "Praznik je uspješno izmjenjen"
 
     // neradni dan uspjesno izmjenjen  
@@ -93,7 +93,6 @@ describe("Owner can login and crate an appointment / edit existing / delete", ()
       })
 
     cy.getWaitClick(".mbsc-fr-btn1", 1000); // dodati bolji identifier?
-
     cy.errorToastVisible("The holiday has been successfully modified"); // "Praznik je uspješno izmjenjen"
 
     // neradni dan uspjesno obrisan  
