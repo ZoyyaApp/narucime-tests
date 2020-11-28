@@ -35,10 +35,11 @@ describe("Owner can login and crate an appointment / edit existing / delete", ()
 
     cy.get(".DayPickerInput > input")
       .click();
-      
-    // dodati click na kalendaru ako trazeni dan nije u ovom mj 
-    cy.getFormatedDate(2).then(returned_value => {
 
+    cy.getFormatedDate(2).then(returned_value => {
+      cy.isSameMonth(2).then(return_bool => {
+        if(!return_bool) cy.get(".DayPicker-NavButton--next").click();
+      })
       var dateIdentifier = '[aria-label="' + returned_value +'"]';
       cy.get(dateIdentifier).click()
     });  
@@ -51,8 +52,7 @@ describe("Owner can login and crate an appointment / edit existing / delete", ()
 
     cy.getWaitClick("[data-cy=button_saveChanges]", 1000);
 
-    //cy.errorToastVisible("Novi praznik je upisan");
-    cy.errorToastVisible("A new holiday has been added");
+    cy.errorToastVisible("A new holiday has been added"); // "Novi praznik je upisan"
 
     // neradni dan uspjesno dodan  
 
@@ -64,37 +64,36 @@ describe("Owner can login and crate an appointment / edit existing / delete", ()
     cy.get(".DayPickerInput > input")
       .click();
 
-    // dodati click na kalendaru ako trazeni dan nije u ovom mj
     cy.getFormatedDate(3).then(returned_value => {
+      cy.isSameMonth(3).then(return_bool => {
+        if(!return_bool) cy.get(".DayPicker-NavButton--next").click();
+      })
       var dateIdentifier = '[aria-label="' + returned_value +'"]';
       cy.get(dateIdentifier).click()
     });
     
     cy.get("[data-cy=input_description]")
       .type(" - izmjena")
-      .should("have.value", text + /*" " + danas+*/ " - izmjena");
+      .should("have.value", text + " - izmjena");
 
     cy.getWaitClick("[data-cy=button_saveChanges]", 1000);
 
-    //cy.errorToastVisible("Praznik je uspješno izmjenjen");
-    //cy.errorToastVisible("The holiday has been successfully modified"); 
+    //cy.errorToastVisible("The holiday has been successfully modified"); // "Praznik je uspješno izmjenjen"
 
     // neradni dan uspjesno izmjenjen  
 
     cy.getFirstWaitClick("[data-cy=tooltip_button_undefined]", 1000); // promjeniti button_undefined za brisanje?
     cy.getWaitClick(".mbsc-fr-btn1", 1000); // dodati bolji identifier?
 
-    //cy.errorToastVisible("Praznik je uspješno izmjenjen");
-    //cy.errorToastVisible("The holiday has been successfully modified"); 
+    cy.errorToastVisible("The holiday has been successfully modified"); // "Praznik je uspješno izmjenjen"
 
     // neradni dan uspjesno obrisan  
 
     // * BILJESKE: *
 
-    // problem toastova
+    // problem toasta - samo jednog
+    
     // problematicni identifieri na kraju pri brisanju
-    // problem ako datum nije u trnutnom mj na kalendaru
-
     // problem identificiranja neradnog dana:
       // (1) problem odabira neradnog dana kad jedan postoji - zaobici style, "jedinstveni" identifier, ne samo redak-stupac?
       // (2) dodati da se uvijek ureduje i brise novo dodan neradni dan, ne prvi koji se pronade - potreban drugaciji identifier
