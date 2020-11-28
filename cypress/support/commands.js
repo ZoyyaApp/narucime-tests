@@ -127,7 +127,7 @@ Cypress.Commands.add("getFormatedDate", (futureDays) =>{
     }
   }
 
-  if(mm==12){
+  if(mm==13){
     mm=0; yyyy++; dd=1;
   }
 
@@ -142,5 +142,27 @@ Cypress.Commands.add("getFormatedDate", (futureDays) =>{
       
   var danas = String(name + '. ' + dd + '. ' + month + '. ' + yyyy);
   return cy.wrap(danas);
+
+});
+
+Cypress.Commands.add("isSameMonth", (futureDays)=> {
+
+  var today = new Date();
+  var dd = Number(today.getDate() + futureDays);
+  var mm = Number(today.getMonth()) + 1;
+
+  if(mm == 1 || mm == 3 || mm == 5 || mm == 7 || mm == 8 || mm == 10 || mm == 12){
+    if(dd>31) return cy.wrap(false); 
+  }
+  
+  if(mm == 4 || mm == 6 || mm == 9 || mm == 11){
+    if(dd>30) return cy.wrap(false);
+  }
+
+  if(mm == 2){
+    if(dd>28) return cy.wrap(false);
+  }
+  
+  return cy.wrap(true);
 
 });

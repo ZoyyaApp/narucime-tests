@@ -73,5 +73,12 @@ declare namespace Cypress {
     */
     getFormatedDate(futureDays: number);
 
+    /**
+    * returns true or false depending on wether today and today+futureDays are in the same month or not
+    * @param futureDays date for how many days in the future to return
+    * 
+    * @example isSameMonth(10);
+    */
+    isSameMonth(futureDays: number);
   }
 }
