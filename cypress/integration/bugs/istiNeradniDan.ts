@@ -6,7 +6,6 @@ describe("Owner can login and crate an appointment / check existing", () => {
 
   // BILJESKE:
 
-  // dodati da "dinamicki bira datum"; kod u upisIzmjena...
   // ocekivano ponasanje: toast koji ne dopusta dva ista neradna dana
 
   it("Fill the login form and submit with enter", () => {
@@ -37,8 +36,13 @@ describe("Owner can login and crate an appointment / check existing", () => {
     cy.get(".DayPickerInput > input")
       .click();
 
-    cy.get('[aria-label="pet. 20. stu. 2020"]') // ?dodati da uvijek bira 2 dana od danas?
-      .click()
+    cy.getFormatedDate(0).then(returned_value => {
+      cy.isSameMonth(0).then(return_bool => {
+        if(!return_bool) cy.get(".DayPicker-NavButton--next").click();
+      })
+      var dateIdentifier = '[aria-label="' + returned_value +'"]';
+      cy.get(dateIdentifier).click()
+    });  
 
     let text:string = "Novi praznik";
 
@@ -57,8 +61,13 @@ describe("Owner can login and crate an appointment / check existing", () => {
     cy.get(".DayPickerInput > input")
       .click();
 
-    cy.get('[aria-label="pet. 20. stu. 2020"]') // ?dodati da uvijek bira 2 dana od danas?
-      .click()
+    cy.getFormatedDate(0).then(returned_value => {
+      cy.isSameMonth(0).then(return_bool => {
+        if(!return_bool) cy.get(".DayPicker-NavButton--next").click();
+      })
+      var dateIdentifier = '[aria-label="' + returned_value +'"]';
+      cy.get(dateIdentifier).click()
+    });  
 
      cy.get("[data-cy=input_description]")
       .type(text)
