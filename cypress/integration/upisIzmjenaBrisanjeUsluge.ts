@@ -84,15 +84,37 @@ describe("Owner can login and crate a service / edit existing / delete", () => {
     cy.errorToastVisible("Service successfully created");
 
     // enter -> niti savea niti zatvara
+
     // Nova usluga uspjesno spremljena
 
-    // .. provjera da usluga posotji ...
+    cy.getWaitClick(".gcwKBr", 1000) // bolji identifier
+
+    cy.get(".styles__ServicesContent-sb82wm-26 > :nth-child(2)")
+        .contains(serviceName);
+
+    // Provjereno da usluga posotji
 
     // ... edit usluge ...
 
     // ... provjera edita ...
 
-    // ... brisanje usluge ...
+    cy.get(".styles__ServicesContent-sb82wm-26 > :nth-child(2)") // identifier?
+        .contains(serviceName)
+        .click();
+
+    cy.getWaitClick("[data-cy=button_undefined]", 1000); // problem identifiera
+
+    cy.getWaitClick(".Flex__FlexRow-sc-1purrr5-0 > .fZZKeE", 1000); // problem identifiera
+
+    cy.wait(1000); // da se prethodni toast makne
+    cy.errorToastVisible("Service changed successfully");
+
+    // Usluga obrisana
+
+    cy.get(".styles__ServicesContent-sb82wm-26 > :nth-child(2)") // identifier?
+        .should("not.contain", serviceName);
+
+    // Provjera brisanja 
 
   });
 
