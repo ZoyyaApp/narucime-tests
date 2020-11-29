@@ -40,8 +40,8 @@ describe("Owner can login and crate an appointment / edit existing / delete", ()
     cy.get(".DayPickerInput > input")
       .click();
 
-    cy.getFormatedDate(2).then(returned_value => {
-      cy.isSameMonth(2).then(return_bool => {
+    cy.getFormatedDate(0).then(returned_value => {
+      cy.isSameMonth(0).then(return_bool => {
         if(!return_bool) cy.get(".DayPicker-NavButton--next").click();
       })
       var dateIdentifier = '[aria-label="' + returned_value +'"]';
@@ -58,6 +58,11 @@ describe("Owner can login and crate an appointment / edit existing / delete", ()
     cy.errorToastVisible("A new holiday has been added"); // "Novi praznik je upisan"
 
     // neradni dan uspjesno dodan  
+
+    cy.get(".styles__TableStyled-oksjky-0")
+      .contains(text)
+      
+    // provjereno da je neradni dan dodan
 
     cy.get(".styles__TableStyled-oksjky-0")
       .contains(text)
@@ -82,7 +87,12 @@ describe("Owner can login and crate an appointment / edit existing / delete", ()
     cy.getWaitClick("[data-cy=button_saveChanges]", 1000);
     //cy.errorToastVisible("The holiday has been successfully modified"); // "Praznik je uspješno izmjenjen"
 
-    // neradni dan uspjesno izmjenjen  
+    // neradni dan uspjesno izmjenjen
+
+    cy.get(".styles__TableStyled-oksjky-0")
+      .contains(text + " - izmjena")
+      
+    // provjereno da je neradni dan izmjenjen  
 
     cy.get(".styles__TableStyled-oksjky-0")
       .contains(text)
@@ -96,6 +106,11 @@ describe("Owner can login and crate an appointment / edit existing / delete", ()
     cy.errorToastVisible("The holiday has been successfully modified"); // "Praznik je uspješno izmjenjen"
 
     // neradni dan uspjesno obrisan  
+
+    cy.get(".styles__TableStyled-oksjky-0")
+      .should("not.contain", text + " - izmjena");
+
+    // provjera daje neradni dan obrisan
 
   });
 
