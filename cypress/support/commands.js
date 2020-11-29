@@ -110,20 +110,20 @@ Cypress.Commands.add("getFormatedDate", (futureDays) =>{
   mm++;
 
   if(mm == 1 || mm == 3 || mm == 5 || mm == 7 || mm == 8 || mm == 10 || mm == 12){
-    if(dd==32){
-      dd=1; mm++;
+    if(dd>=32){
+      dd-=31; mm++;
     }
   }
   
   if(mm == 4 || mm == 6 || mm == 9 || mm == 11){
-    if(dd==31){
-      dd=1; mm++;
+    if(dd>=31){
+      dd-=30; mm++;
     }
   }
 
   if(mm == 2){
-    if(dd==30){
-      dd=1; mm++;
+    if(dd>=29){
+      dd-=28; mm++;
     }
   }
 
@@ -137,6 +137,8 @@ Cypress.Commands.add("getFormatedDate", (futureDays) =>{
   var month = monthNameArr[mm];
 
   var weekDay = (today.getDay() + futureDays - 1) % 7;
+  if(weekDay<0) weekDay += 7;
+
   var weekDayNameArr = ["pon", "uto", "sri", "cet", "pet", "sub", "ned"];
   name = weekDayNameArr[weekDay];
       
