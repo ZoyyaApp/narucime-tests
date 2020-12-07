@@ -18,7 +18,7 @@ describe("Rušenje stranice kod djelatnika i Resize Observer bug", () => {
         //Wait uzrokuje Resize observer bug
         
 
-        cy.wait(100);
+        cy.wait(1000);
 
         //Stranica se zna srusiti prilikom doljnje click() komande 
 
