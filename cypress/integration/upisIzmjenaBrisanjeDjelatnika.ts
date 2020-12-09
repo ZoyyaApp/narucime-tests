@@ -16,9 +16,9 @@ var address = 'neka adresa'
 
 // Liste s podatcima za provjeru dropdown izbornika
 
-var item_list_gender=['Ženski','Muški','Ne želim upisati'];
+var item_list_gender=['Female','Male','Prefer not to say'];
 
-var item_list_role=['Vlasnik','Korisnik','Administrator'];
+var item_list_role=['Owner','User','Administrator'];
 
 context('Actions', () => {
     beforeEach(() => {
@@ -41,38 +41,38 @@ context('Actions', () => {
 
       it('Dodavanje djelatnika',()=>{
 
-        cy.get('[data-cy=button_addEmployee]',).click()
+        cy.get('[data-cy=button_addEmployee]',).click();
 
         // Test Error toast ispisa
 
-        cy.get('[data-cy=button_saveChanges]').click()
+        cy.get('[data-cy=button_saveChanges]').click();
 
-        cy.errorToastVisible('Ime je obavezan podatak')
-        cy.errorToastVisible('Prezime je obavezan podatak')
-        cy.errorToastVisible('Ovlaštenje je obavezan podatak')
-        cy.errorToastVisible('Spol je obavezan podatak')
+        cy.errorToastVisible('Ime je obavezan podatak');
+        cy.errorToastVisible('Prezime je obavezan podatak');
+        cy.errorToastVisible('Ovlaštenje je obavezan podatak');
+        cy.errorToastVisible('Spol je obavezan podatak');
 
-        cy.wait(1000)
+        cy.wait(1000);
 
-        cy.get('[data-cy=input_firstName]').type(name)
+        cy.get('[data-cy=input_firstName]').type(name);
 
-        cy.get('[data-cy=input_lastName]').type(surname)
+        cy.get('[data-cy=input_lastName]').type(surname);
 
-        cy.get('[data-cy=input_email]').type(mail)
+        cy.get('[data-cy=input_email]').type(mail);
 
         // Provjera podataka u dropdown menu-ima pri odabiranju spola i uloge, varijable za provjeru definiraju se u item_list_gender i item_list_role - linije 19 i 21
 
-        cy.menuListItems('[data-cy=input_gender]',item_list_gender,0).click()
+        cy.menuListItems('[data-cy=input_gender]',item_list_gender,0).click();
 
-        cy.menuListItems('[data-cy=input_role]',item_list_role,0).click()
+        cy.menuListItems('[data-cy=input_role]',item_list_role,0).click();
 
-        cy.get('[data-cy=button_saveChanges]').click()
+        cy.get('[data-cy=button_saveChanges]').click();
         
         cy.wait(1000)
 
         // Provjera jeli unesen djelatnik
 
-        cy.get('.styles__TableRow-qmnykg-42')
+        cy.get('.styles__TableStyled-oksjky-0')
         .should('contain',name+' '+surname)
         .and('contain',mail)
       })
@@ -81,25 +81,25 @@ context('Actions', () => {
 
         //Izmjena podataka, vrsi se na slican nacin ko i prijasnji dio testa samo sto ne kreiramo novog djelatnika
 
-        cy.get('.styles__TableRow-qmnykg-42').last().click()
+        cy.get('.styles__TableStyled-oksjky-0').contains(name+' '+surname).click();
 
-        cy.get('[data-cy=input_firstName]').clear().type(name1)
+        cy.get('[data-cy=input_firstName]').clear().type(name1);
 
-        cy.get('[data-cy=input_lastName]').clear().type(surname1)
+        cy.get('[data-cy=input_lastName]').clear().type(surname1);
 
-        cy.get('[data-cy=input_email]').clear().type(mail1)
+        cy.get('[data-cy=input_email]').clear().type(mail1);
 
-        cy.menuListItems('[data-cy=input_gender]',item_list_gender,1).click()
+        cy.menuListItems('[data-cy=input_gender]',item_list_gender,1).click();
 
-        cy.menuListItems('[data-cy=input_role]',item_list_role,1).click()
+        cy.menuListItems('[data-cy=input_role]',item_list_role,1).click();
 
-        cy.get('[data-cy=input_address]').type(address)
+        cy.get('[data-cy=input_address]').type(address);
 
-        cy.get('[data-cy=button_saveChanges]').click()
+        cy.get('[data-cy=button_saveChanges]').click();
 
-        cy.get('.styles__TableRow-qmnykg-42')
+        cy.get('.styles__TableStyled-oksjky-0')
         .should('contain',name1+' '+surname1)
-        .and('contain',mail1)
+        .and('contain',mail1);
 
       })
 
@@ -109,13 +109,13 @@ context('Actions', () => {
 
         cy.get('.table').contains(name1+' '+surname1)
         .parentsUntil('[role=rowgroup]')
-        .contains('[data-cy=button_undefined]').click()
+        .find('[data-cy=button_undefined]').click()
         
         //Provjerava jeli djelatnik izbrisan no komentirano zbog errora u gornjem bloku koda
 
-        // cy.get('.styles__TableRow-qmnykg-42')
-        // .should('not.contain',name1+' '+surname1)
-        // .and('not.contain',mail)
+        cy.get('.styles__TableStyled-oksjky-0')
+        .should('not.contain',name1+' '+surname1)
+        .and('not.contain',mail)
       })
 })
 
