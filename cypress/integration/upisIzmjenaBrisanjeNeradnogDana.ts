@@ -6,9 +6,7 @@ export const module = 1;
 
 // problem toasta - samo jednog
 
-// problematicni identifieri 
-//  -> problem brisanja vise od jednog neradnog dana
-   
+// problematicni identifieri    
 
 describe("Owner can login and crate an appointment / edit existing / delete", () => {
 
@@ -97,7 +95,7 @@ describe("Owner can login and crate an appointment / edit existing / delete", ()
     cy.get(".styles__TableStyled-oksjky-0")
       .contains(text)
       .then(($btn) => {
-        cy.get("[data-cy=tooltip_button_undefined]")
+        cy.get("[data-cy=tooltip_button_delete_holiday_563]")
         .wait(1000)
         .click();
       })
