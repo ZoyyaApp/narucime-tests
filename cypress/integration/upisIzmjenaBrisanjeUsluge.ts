@@ -164,8 +164,8 @@ describe("Owner can login and crate a service / edit existing / delete", () => {
         .contains(serviceName + " - izmjena")
         .click();
 
-    //cy.get("[data-cy=input_price]")
-    //    .should("have.value", servicePrice); // BUG -> stara cijena je ostala
+    cy.get("[data-cy=input_price]")
+        .should("have.value", servicePrice); // BUG -> stara cijena je ostala
 
     // ... provjera ostalih edita ....
 
