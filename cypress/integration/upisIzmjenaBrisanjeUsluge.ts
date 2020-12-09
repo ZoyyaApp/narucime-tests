@@ -162,12 +162,12 @@ describe("Owner can login and crate a service / edit existing / delete", () => {
 
     cy.get(".styles__ServicesContent-sb82wm-26 > :nth-child(2)")
         .contains(serviceName + " - izmjena")
-        .click(); // -> BUG izmjena ne radi
+        .click();
 
     cy.get("[data-cy=input_price]")
-        .should("have.value", servicePrice);
+        .should("have.value", servicePrice); // BUG -> stara cijena je ostala
 
-    // ... ostalih edita ....
+    // ... provjera ostalih edita ....
 
     cy.get("[data-cy=button_close]").click();
 
