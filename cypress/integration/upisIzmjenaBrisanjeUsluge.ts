@@ -6,7 +6,7 @@ export const module = 1;
 
 // trnutno se radi na testu
 //  - izrada, edit i brisanje rade
-//  - treba dovrsiti provjeru edita
+//  - treba dovrsiti provjeru edita -> bug za edit cijene
 
 // problem promjene identifiera pri pokretanjima (mjenjaju se)
 // dugacak identifier za odabir boja
@@ -48,8 +48,7 @@ describe("Owner can login and crate a service / edit existing / delete", () => {
         .type(serviceName)
         .should("have.value", serviceName);
 
-    //cy.get(":nth-child(1)") || identifier problem
-
+    // identifier problem v
     cy.get(':nth-child(1) > [style="display: flex; flex: 1 1 0%; flex-direction: column; justify-content: initial; align-items: stretch; width: initial;"] > [style="flex-grow: 1; margin-right: 0px; position: relative; display: initial; align-items: initial;"] > :nth-child(1) > .style__StyledSelect-sc-1infrqw-0 > .react-select__control > .react-select__value-container')
         .click()
         .then(() => {
@@ -121,7 +120,7 @@ describe("Owner can login and crate a service / edit existing / delete", () => {
     cy.get("[data-cy=input_bookingAllowed]")
         .click()
         .then(() => {
-            cy.get("#react-select-10-option-0") // identifier se mijenja izmedu 4 i 5 pri pokretanjima ...
+            cy.get("#react-select-10-option-0") // identifier se mijenja izmedu 9 i 10 pri pokretanjima ...
             .click();
         })
 
@@ -178,14 +177,14 @@ describe("Owner can login and crate a service / edit existing / delete", () => {
         .click();
 
     cy.getWaitClick("[data-cy=button_undefined]", 1000); // problem identifiera (nezgodni)
-    cy.getWaitClick(".Flex__FlexRow-sc-1purrr5-0 > .dLuoil", 1000)
+    cy.getWaitClick(".Flex__FlexRow-sc-1purrr5-0 > .dLuoil", 1000) // problem identifiera
 
     cy.getWaitClick("[data-cy=button_undefined]", 1000); // problem identifiera (nezgodni)
     cy.getWaitClick(".Flex__FlexRow-sc-1purrr5-0 > .fZZKeE", 1000); // problem identifiera
 
     cy.wait(1000); // potrebno da se prethodni toast makne, da se novi prepozna
+    // Drugaciji toast za brisanje usluge v
     cy.errorToastVisible("Service changed successfully");
-    // Drugaciji toast za brisanje usluge
 
     // Usluga obrisana
 

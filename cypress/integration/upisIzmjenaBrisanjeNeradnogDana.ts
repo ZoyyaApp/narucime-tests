@@ -6,7 +6,8 @@ export const module = 1;
 
 // problem toasta - samo jednog
 
-// problematicni identifieri    
+// problematicni identifieri 
+// problem brisanje usluge - uzrokuje identifier   
 
 describe("Owner can login and crate an appointment / edit existing / delete", () => {
 
