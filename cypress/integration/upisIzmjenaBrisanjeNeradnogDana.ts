@@ -84,7 +84,7 @@ describe("Owner can login and crate an appointment / edit existing / delete", ()
       .should("have.value", text + " - izmjena");
 
     cy.getWaitClick("[data-cy=button_saveChanges]", 1000);
-    //cy.errorToastVisible("The holiday has been successfully modified"); // "Praznik je uspješno izmjenjen"
+    cy.errorToastVisible("The holiday has been successfully modified"); // "Praznik je uspješno izmjenjen"
 
     // neradni dan uspjesno izmjenjen
 
