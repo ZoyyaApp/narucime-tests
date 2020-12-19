@@ -26,6 +26,9 @@ describe("Owner can login and edit branch data", () => {
     cy.getButton("submit").click();
     cy.location('pathname').should('match', /\/calendar\/day\/*$/);
 
+    //cy.getWaitClick(".dUbUBi@", 500); // identifier!
+    //cy.getFirstWaitClick(".hyiaHA", 500); // identifier!
+
   })
 
   it("Navigate to branch data in settings", () => {
