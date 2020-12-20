@@ -4,9 +4,12 @@ export const module = 1;
 
 // * BILJESKE: *
 
-// trnutno se radi na testu ...
+// trnutno se radi na testu
+//  - izrada, edit i brisanje rade
+//  - treba dovrsiti provjeru edita -> bug za edit cijene
 
-// problem promjene identifiera pri pokretanjima
+// problem promjene identifiera pri pokretanjima (mjenjaju se)
+// dugacak identifier za odabir boja
 
 describe("Owner can login and crate a service / edit existing / delete", () => {
 
@@ -45,7 +48,13 @@ describe("Owner can login and crate a service / edit existing / delete", () => {
         .type(serviceName)
         .should("have.value", serviceName);
 
-    // ... boje ...
+    // identifier problem v
+    cy.get(':nth-child(1) > [style="display: flex; flex: 1 1 0%; flex-direction: column; justify-content: initial; align-items: stretch; width: initial;"] > [style="flex-grow: 1; margin-right: 0px; position: relative; display: initial; align-items: initial;"] > :nth-child(1) > .style__StyledSelect-sc-1infrqw-0 > .react-select__control > .react-select__value-container')
+        .click()
+        .then(() => {
+            cy.get("#react-select-4-option-0 > div") 
+            .click();
+        })
 
     cy.get("[data-cy=input_bookingAllowed]")
         .click()
@@ -84,7 +93,6 @@ describe("Owner can login and crate a service / edit existing / delete", () => {
     cy.errorToastVisible("Service successfully created");
 
     // enter -> niti savea niti zatvara
-
     // Nova usluga uspjesno spremljena
 
     cy.getWaitClick(".gcwKBr", 1000) // bolji identifier
@@ -102,12 +110,17 @@ describe("Owner can login and crate a service / edit existing / delete", () => {
         .type(" - izmjena")
         .should("have.value", serviceName + " - izmjena");
 
-    // ... edit boje ...
+    cy.get(':nth-child(1) > [style="display: flex; flex: 1 1 0%; flex-direction: column; justify-content: initial; align-items: stretch; width: initial;"] > [style="flex-grow: 1; margin-right: 0px; position: relative; display: initial; align-items: initial;"] > :nth-child(1) > .style__StyledSelect-sc-1infrqw-0 > .react-select__control > .react-select__value-container')
+        .click()
+        .then(() => {
+            cy.get("#react-select-9-option-5 > div") 
+            .click();
+        })
 
     cy.get("[data-cy=input_bookingAllowed]")
         .click()
         .then(() => {
-            cy.get("#react-select-10-option-0") // identifier se mijenja izmedu 4 i 5 pri pokretanjima ...
+            cy.get("#react-select-10-option-0") // identifier se mijenja izmedu 9 i 10 pri pokretanjima ...
             .click();
         })
 
@@ -140,20 +153,20 @@ describe("Owner can login and crate a service / edit existing / delete", () => {
         .should("have.value", serviceDescription + " - izmjena");
 
     cy.getWaitClick("[data-cy=button_saveChanges]", 0);
-    cy.errorToastVisible("Service successfully created"); // !BUG!
+    cy.errorToastVisible("Service changed successfully"); 
 
     // Usluga uspjesno izmjenjena
 
     // ... provjera edita ...
 
-    /*cy.get(".styles__ServicesContent-sb82wm-26 > :nth-child(2)")
+    cy.get(".styles__ServicesContent-sb82wm-26 > :nth-child(2)")
         .contains(serviceName + " - izmjena")
-        .click();*/ // -> BUG izmjena ne radi
+        .click();
 
     cy.get("[data-cy=input_price]")
-        .should("have.value", servicePrice);
+        .should("have.value", servicePrice); // BUG -> stara cijena je ostala
 
-    // ... ostalih edita ....
+    // ... provjera ostalih edita ....
 
     cy.get("[data-cy=button_close]").click();
 
@@ -163,13 +176,14 @@ describe("Owner can login and crate a service / edit existing / delete", () => {
         .contains(serviceName + " - izmjena")
         .click();
 
-    cy.getWaitClick("[data-cy=button_undefined]", 1000); // problem identifiera
+    cy.getWaitClick("[data-cy=button_undefined]", 1000); // problem identifiera (nezgodni)
+    cy.getWaitClick(".Flex__FlexRow-sc-1purrr5-0 > .dLuoil", 1000) // problem identifiera
 
-    // dodati click na ne prije brisanja
-
+    cy.getWaitClick("[data-cy=button_undefined]", 1000); // problem identifiera (nezgodni)
     cy.getWaitClick(".Flex__FlexRow-sc-1purrr5-0 > .fZZKeE", 1000); // problem identifiera
 
     cy.wait(1000); // potrebno da se prethodni toast makne, da se novi prepozna
+    // Drugaciji toast za brisanje usluge v
     cy.errorToastVisible("Service changed successfully");
 
     // Usluga obrisana

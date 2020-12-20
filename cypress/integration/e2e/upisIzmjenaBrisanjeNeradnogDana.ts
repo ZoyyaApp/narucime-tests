@@ -7,8 +7,7 @@ export const module = 1;
 // problem toasta - samo jednog
 
 // problematicni identifieri 
-//  -> problem brisanja vise od jednog neradnog dana
-   
+// problem brisanje usluge - uzrokuje identifier   
 
 describe("Owner can login and crate an appointment / edit existing / delete", () => {
 
@@ -85,7 +84,7 @@ describe("Owner can login and crate an appointment / edit existing / delete", ()
       .should("have.value", text + " - izmjena");
 
     cy.getWaitClick("[data-cy=button_saveChanges]", 1000);
-    //cy.errorToastVisible("The holiday has been successfully modified"); // "Praznik je uspješno izmjenjen"
+    cy.errorToastVisible("The holiday has been successfully modified"); // "Praznik je uspješno izmjenjen"
 
     // neradni dan uspjesno izmjenjen
 
@@ -97,7 +96,7 @@ describe("Owner can login and crate an appointment / edit existing / delete", ()
     cy.get(".styles__TableStyled-oksjky-0")
       .contains(text)
       .then(($btn) => {
-        cy.get("[data-cy=tooltip_button_undefined]")
+        cy.get("[data-cy=tooltip_button_delete_holiday_563]")
         .wait(1000)
         .click();
       })
