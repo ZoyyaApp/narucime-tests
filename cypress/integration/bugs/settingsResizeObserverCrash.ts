@@ -13,7 +13,7 @@ describe("Rušenje stranice kod djelatnika i Resize Observer bug", () => {
         cy.get('[data-cy=input_password]').type('jedan234')
 
         cy.get('[data-cy=button_submit]').click()
-        cy.get('[data-intercom-target="Sidebar-Settings"]').click()
+        cy.get('[data-intercom-target="Sidebar-Reports"]').click()
 
         //Wait uzrokuje Resize observer bug
         
