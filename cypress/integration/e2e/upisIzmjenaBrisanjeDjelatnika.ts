@@ -109,7 +109,7 @@ context('Actions', () => {
 
         cy.get('.table').contains(name1+' '+surname1)
         .parentsUntil('[role=rowgroup]')
-        .find('[data-cy=button_undefined]').click()
+        .find('[data-cy=button_undefined]').last().click()
         
         //Provjerava jeli djelatnik izbrisan no komentirano zbog errora u gornjem bloku koda
 
