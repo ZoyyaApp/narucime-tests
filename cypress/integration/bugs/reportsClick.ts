@@ -19,6 +19,7 @@ describe("Owner can login and edit branch data", () => {
 
     cy.getButton("submit").click();
     cy.location('pathname').should('match', /\/calendar\/day\/*$/);
+    
     cy.wait(5000);
     cy.getWaitClick('[data-intercom-target="Sidebar-Reports"]', 0); 
 
