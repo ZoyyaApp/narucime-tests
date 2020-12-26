@@ -9,7 +9,6 @@ export const module = 1;
 //  - treba dovrsiti provjeru edita -> bug za edit cijene
 
 // problem promjene identifiera pri pokretanjima (mjenjaju se)
-// dugacak identifier za odabir boja
 
 describe("Owner can login and crate a service / edit existing / delete", () => {
 
@@ -52,8 +51,6 @@ describe("Owner can login and crate a service / edit existing / delete", () => {
         .type(serviceName)
         .should("have.value", serviceName);
 
-    // identifier problem v
-    //cy.get(':nth-child(1) > [style="display: flex; flex: 1 1 0%; flex-direction: column; justify-content: initial; align-items: stretch; width: initial;"] > [style="flex-grow: 1; margin-right: 0px; position: relative; display: initial; align-items: initial;"] > :nth-child(1) > .style__StyledSelect-sc-1infrqw-0 > .react-select__control > .react-select__value-container')
     cy.get("[data-cy=input_color] > .style__StyledSelect-sc-1infrqw-0 > .react-select__control > .react-select__indicators")
         .click()
         .then(() => {
@@ -115,7 +112,7 @@ describe("Owner can login and crate a service / edit existing / delete", () => {
         .type(" - izmjena")
         .should("have.value", serviceName + " - izmjena");
 
-    cy.get(':nth-child(1) > [style="display: flex; flex: 1 1 0%; flex-direction: column; justify-content: initial; align-items: stretch; width: initial;"] > [style="flex-grow: 1; margin-right: 0px; position: relative; display: initial; align-items: initial;"] > :nth-child(1) > .style__StyledSelect-sc-1infrqw-0 > .react-select__control > .react-select__value-container')
+    cy.get("[data-cy=input_color] > .style__StyledSelect-sc-1infrqw-0 > .react-select__control > .react-select__indicators")
         .click()
         .then(() => {
             cy.get("#react-select-9-option-5 > div") 
