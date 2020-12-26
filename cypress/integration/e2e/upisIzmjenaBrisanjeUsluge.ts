@@ -33,13 +33,13 @@ describe("Owner can login and crate a service / edit existing / delete", () => {
 
     //cy.getWaitClick('[data-intercom-target="Sidebar-Settings"]', 1000);
     
-    cy.wait(2000);
+    cy.wait(3000);
     cy.get('[data-intercom-target="Sidebar-Settings"]')
       .click();
 
     cy.location('pathname').should('include', '/settings/organization/');
 
-    cy.getWaitClick('[data-intercom-target="Sidebar-Location-Services"]', 200); // dulji wait ne radi 
+    cy.getWaitClick('[data-intercom-target="Sidebar-Location-Services"]', 200);
     cy.location('pathname').should('include', '/services/');
 
     cy.getWaitClick("[data-cy=button_btnAddService]", 1000);
@@ -53,11 +53,12 @@ describe("Owner can login and crate a service / edit existing / delete", () => {
         .should("have.value", serviceName);
 
     // identifier problem v
-    cy.get(':nth-child(1) > [style="display: flex; flex: 1 1 0%; flex-direction: column; justify-content: initial; align-items: stretch; width: initial;"] > [style="flex-grow: 1; margin-right: 0px; position: relative; display: initial; align-items: initial;"] > :nth-child(1) > .style__StyledSelect-sc-1infrqw-0 > .react-select__control > .react-select__value-container')
+    //cy.get(':nth-child(1) > [style="display: flex; flex: 1 1 0%; flex-direction: column; justify-content: initial; align-items: stretch; width: initial;"] > [style="flex-grow: 1; margin-right: 0px; position: relative; display: initial; align-items: initial;"] > :nth-child(1) > .style__StyledSelect-sc-1infrqw-0 > .react-select__control > .react-select__value-container')
+    cy.get("[data-cy=input_color] > .style__StyledSelect-sc-1infrqw-0 > .react-select__control > .react-select__indicators")
         .click()
         .then(() => {
             cy.get("#react-select-4-option-0 > div") 
-            .click();
+              .click();
         })
 
     cy.get("[data-cy=input_bookingAllowed]")
