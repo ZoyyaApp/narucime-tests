@@ -6,9 +6,11 @@ export const module = 1;
 
 // trnutno se radi na testu
 //  - izrada, edit i brisanje rade
-//  - treba dovrsiti provjeru edita -> bug za edit cijene
+//  - treba dovrsiti provjeru edita 
 
 // bolji identifieri ? na izborniku vrsta usluga
+// bug - edit cijene
+// bug - identifier za izmjenu usluge
 
 describe("Owner can login and crate a service / edit existing / delete", () => {
 
