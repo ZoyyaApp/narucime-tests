@@ -43,13 +43,16 @@ describe("Owner can login and crate an appointment / edit existing / delete", ()
     cy.get(".DayPickerInput > input")
       .click();
 
-    cy.getFormatedDate(0).then(returned_value => {
+    cy.get(".DayPicker-Day--selected")
+      .click();
+
+    /*cy.getFormatedDate(0).then(returned_value => {
       cy.isSameMonth(0).then(return_bool => {
         if(!return_bool) cy.get(".DayPicker-NavButton--next").click();
       })
       var dateIdentifier = '[aria-label="' + returned_value +'"]';
       cy.get(dateIdentifier).click()
-    });  
+    });*/  
   
     let text:string = "Novi praznik";
 
