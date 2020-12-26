@@ -41,36 +41,11 @@ describe("Owner can edit/create/delete type of service", () => {
 
         cy.get('.Check__StyledIcon-m1vxvo-0').click();
 
-        // Izmjena 'Test-vrsta-usluge' u 'Izmjenjena-vrsta-usluge'
+        cy.get('[data-cy=tooltip_button_btnEditService]').click()
 
-        cy.get('.styles__ServicesLeftContent-sb82wm-27')
-        .should('contain','Test-vrsta-usluge');
+        cy.get('[data-cy=tooltip_button_btnEditService]').click()
 
-        cy.get('.styles__ServicesLeftContent-sb82wm-27')
-        .contains('Test-vrsta-usluge')
-        .parent()
-        .then(($parent)=>{                                              //Hvatanje parent DOM-a od onoga koji sadrzi Test-vrsta-usluge
-            cy.get('[data-cy=tooltip_button_btnEditService]').click()
-
-            cy.wrap($parent)
-            .click()
-            .type('Izmjenjena-vrsta-usluge')
-
-        });
-
-        cy.get('.Check__StyledIcon-m1vxvo-0').click();
-
-        cy.get('.styles__ServicesLeftContent-sb82wm-27')
-        .should('contain','Izmjenjena-vrsta-usluge');
-        
-        cy.get('.styles__ServicesLeftContent-sb82wm-27')
-        .contains('Test-vrsta-usluge')
-        .parent().click()
-        
-        cy.get('[data-cy=tooltip_button_btnDeleteService]').click()
-
-        cy.get('.styles__ServicesLeftContent-sb82wm-27')
-        .should('not.contain','Izmjenjena-vrsta-usluge');
+        cy.get('.styles__CategoryServicesList-sb82wm-32').should('not-contain','.Check__StyledIcon-m1vxvo-0')
 
         
     });
