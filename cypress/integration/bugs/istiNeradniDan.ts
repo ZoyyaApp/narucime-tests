@@ -25,7 +25,11 @@ describe("Owner can login and crate an appointment / check existing", () => {
 
     cy.location('pathname').should('match', /\/calendar\/day\/*$/)
 
-    cy.getWaitClick('[data-intercom-target="Sidebar-Settings"]', 1000);
+    //cy.getWaitClick('[data-intercom-target="Sidebar-Settings"]', 1000);
+
+    cy.wait(3000);
+    cy.get('[data-intercom-target="Sidebar-Settings"]')
+      .click();
 
     cy.location('pathname').should('include', '/settings/organization/');
 
@@ -36,13 +40,8 @@ describe("Owner can login and crate an appointment / check existing", () => {
     cy.get(".DayPickerInput > input")
       .click();
 
-    cy.getFormatedDate(0).then(returned_value => {
-      cy.isSameMonth(0).then(return_bool => {
-        if(!return_bool) cy.get(".DayPicker-NavButton--next").click();
-      })
-      var dateIdentifier = '[aria-label="' + returned_value +'"]';
-      cy.get(dateIdentifier).click()
-    });  
+    cy.get(".DayPicker-Day--selected")
+      .click(); 
 
     let text:string = "Novi praznik";
 
@@ -61,13 +60,8 @@ describe("Owner can login and crate an appointment / check existing", () => {
     cy.get(".DayPickerInput > input")
       .click();
 
-    cy.getFormatedDate(0).then(returned_value => {
-      cy.isSameMonth(0).then(return_bool => {
-        if(!return_bool) cy.get(".DayPicker-NavButton--next").click();
-      })
-      var dateIdentifier = '[aria-label="' + returned_value +'"]';
-      cy.get(dateIdentifier).click()
-    });  
+    cy.get(".DayPicker-Day--selected")
+      .click();
 
      cy.get("[data-cy=input_description]")
       .type(text)
@@ -75,9 +69,7 @@ describe("Owner can login and crate an appointment / check existing", () => {
 
     cy.getWaitClick("[data-cy=button_saveChanges]", 1000);
 
-    cy.errorToastVisible("A holiday with the same date already exists");
-
-    // ocekivano ponasanje: toast koji ne dopusta dva ista neradna dana
+    cy.errorToastVisible("Neradni dan s tim datumom već postoji");
 
   });
   
