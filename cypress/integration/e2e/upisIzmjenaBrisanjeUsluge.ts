@@ -8,7 +8,7 @@ export const module = 1;
 //  - izrada, edit i brisanje rade
 //  - treba dovrsiti provjeru edita -> bug za edit cijene
 
-// problem promjene identifiera pri pokretanjima (mjenjaju se)
+// bolji identifieri ? na izborniku vrsta usluga
 
 describe("Owner can login and crate a service / edit existing / delete", () => {
 
@@ -61,7 +61,7 @@ describe("Owner can login and crate a service / edit existing / delete", () => {
     cy.get("[data-cy=input_bookingAllowed] > .style__StyledSelect-sc-1infrqw-0 > .react-select__control > .react-select__indicators > .react-select__dropdown-indicator")
         .click()
         .then(() => {
-            cy.get("#react-select-5-option-1") // identifier se mijenja izmedu 4 i 5 pri pokretanjima ...
+            cy.get("#react-select-5-option-1")
             .click();
         })
 
@@ -76,7 +76,7 @@ describe("Owner can login and crate a service / edit existing / delete", () => {
         .type(servicePrice)
         .should("have.value", servicePrice);
 
-    cy.get("[data-cy=input_type]")
+    cy.get("[data-cy=input_type] > .style__StyledSelect-sc-1infrqw-0 > .react-select__control > .react-select__indicators > .react-select__dropdown-indicator")
         .click()
         .then(() => {
             cy.get("#react-select-7-option-1")
@@ -94,17 +94,16 @@ describe("Owner can login and crate a service / edit existing / delete", () => {
     cy.getWaitClick("[data-cy=button_saveChanges]", 1000)
     cy.errorToastVisible("Service successfully created");
 
-    // enter -> niti savea niti zatvara
     // Nova usluga uspjesno spremljena
 
-    cy.getWaitClick(".gcwKBr", 1000) // bolji identifier
+    cy.getWaitClick(".styles__ServicesLeftContent-sb82wm-27 > .styles__CategoryServicesList-sb82wm-32 > :nth-child(2)", 1000) // bolji identifier
 
-    cy.get(".styles__ServicesContent-sb82wm-26 > :nth-child(2)")
+    cy.get(".styles__ServicesContent-sb82wm-26 > :nth-child(2)") // bolji identifier?
         .contains(serviceName);
 
     // Provjereno da usluga posotji
 
-    cy.get(".styles__ServicesContent-sb82wm-26 > :nth-child(2)") // identifier?
+    cy.get(".styles__ServicesContent-sb82wm-26 > :nth-child(2)") // bolji identifier?
         .contains(serviceName)
         .click();
 
@@ -122,7 +121,7 @@ describe("Owner can login and crate a service / edit existing / delete", () => {
     cy.get("[data-cy=input_bookingAllowed] > .style__StyledSelect-sc-1infrqw-0 > .react-select__control > .react-select__indicators > .react-select__dropdown-indicator")
         .click()
         .then(() => {
-            cy.get("#react-select-10-option-0") // identifier se mijenja izmedu 9 i 10 pri pokretanjima ...
+            cy.get("#react-select-10-option-0") 
             .click();
         })
 
@@ -139,7 +138,7 @@ describe("Owner can login and crate a service / edit existing / delete", () => {
         .type("{backspace}{backspace}{backspace}" + servicePrice)
         .should("have.value", servicePrice);
 
-    cy.get("[data-cy=input_type]")
+    cy.get("[data-cy=input_type] > .style__StyledSelect-sc-1infrqw-0 > .react-select__control > .react-select__indicators > .react-select__dropdown-indicator")
         .click()
         .then(() => {
             cy.get("#react-select-12-option-1") // promjeniti u option-0
@@ -155,7 +154,8 @@ describe("Owner can login and crate a service / edit existing / delete", () => {
         .should("have.value", serviceDescription + " - izmjena");
 
     cy.getWaitClick("[data-cy=button_saveChanges]", 0);
-    cy.errorToastVisible("Service changed successfully"); 
+    cy.errorToastVisible("Service changed successfully");
+    //cy.errorToastVisible("Service successfully created"); 
 
     // Usluga uspjesno izmjenjena
 
@@ -186,7 +186,7 @@ describe("Owner can login and crate a service / edit existing / delete", () => {
 
     cy.wait(1000); // potrebno da se prethodni toast makne, da se novi prepozna
     // Drugaciji toast za brisanje usluge v
-    cy.errorToastVisible("Service changed successfully");
+    cy.errorToastVisible("Service successfully deleted");
 
     // Usluga obrisana
 
