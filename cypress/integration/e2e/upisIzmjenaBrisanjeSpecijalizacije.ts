@@ -12,6 +12,8 @@ describe('Test Upisa/Izmjene/Brisanja Specijalizacije', ()=>{
         cy.get('[data-cy=input_password]').type('jedan234');
 
         cy.get('[data-cy=button_submit]').click();
+
+        cy.wait(3000)
         cy.get('[data-intercom-target="Sidebar-Settings"]').click();
 
         //Stranica se zna srusiti prilikom doljnje click() komande 
@@ -20,7 +22,7 @@ describe('Test Upisa/Izmjene/Brisanja Specijalizacije', ()=>{
     })
 
     it('Upis specijalizacije',()=>{
-        cy.get('[data-cy=button_undefined]').click();
+        cy.get('[data-cy=button_add-profession]').click();
         cy.get('[data-cy=input_name]').type('Test specijalizacija');
         cy.get('[data-cy=button_saveChanges]').click();
         cy.get('.styles__TableStyled-oksjky-0').should('contain','Test specijalizacija')
@@ -41,7 +43,7 @@ describe('Test Upisa/Izmjene/Brisanja Specijalizacije', ()=>{
     it('Brisanje specijalizacije', () => {
         cy.get('.styles__TableStyled-oksjky-0').contains('Izmjenjena specijalizacija')
         .parentsUntil('[role=rowgroup]')
-        .find('.Button__ButtonStyled-sc-1rk4a6g-0').click()
+        cy.get('[data-cy=tooltip_button_deleteProfession]').first().click()
 
         cy.wait(200)
 
