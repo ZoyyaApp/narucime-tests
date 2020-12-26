@@ -58,7 +58,7 @@ describe("Owner can login and crate a service / edit existing / delete", () => {
               .click();
         })
 
-    cy.get("[data-cy=input_bookingAllowed]")
+    cy.get("[data-cy=input_bookingAllowed] > .style__StyledSelect-sc-1infrqw-0 > .react-select__control > .react-select__indicators > .react-select__dropdown-indicator")
         .click()
         .then(() => {
             cy.get("#react-select-5-option-1") // identifier se mijenja izmedu 4 i 5 pri pokretanjima ...
