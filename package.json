@@ -7,7 +7,7 @@
     "cy": "cypress open"
   },
   "dependencies": {
-    "cypress": "^6.0.0",
+    "cypress": "6.2.0",
     "cypress-localstorage-commands": "^1.2.4",
     "cypress-pipe": "^2.0.0",
     "cypress-wait-until": "^1.7.1",
