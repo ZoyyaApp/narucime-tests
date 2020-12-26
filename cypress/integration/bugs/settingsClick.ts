@@ -26,10 +26,17 @@ describe("Test clicking on settings button after spinner dissapears", () => {
 
     //cy.waitUntil(function() {return cy.get(".styles__Spinner-iugvqw-2").should('not.exist')}); // zapne u besk. petlji
 
-    cy.log("", Cypress.$('.styles__Spinner-iugvqw-2').length);
+    //cy.get('.styles__Spinner-iugvqw-2', {timeout: 10000}).should('not.exist'); // ne radi kako treba
+
+    cy.wait(2000);
+    cy.get('[data-intercom-target="Sidebar-Settings"]').click();
+    
+    //cy.get('data-cy=zoyya-loading', {timeout: 10000}).should('not.exist'); // ne pronalazi data-cy=zoyya-loading
+
+    /*cy.log("", Cypress.$('.styles__Spinner-iugvqw-2').length);
     cy.waitUntil(function() {return Cypress.$('.styles__Spinner-iugvqw-2').length!=0}); // ne ceka iako su oba loga 0
     cy.log("", Cypress.$('.styles__Spinner-iugvqw-2').length);
-    cy.get('[data-intercom-target="Sidebar-Settings"]').click();
+    cy.get('[data-intercom-target="Sidebar-Settings"]').click();*/
 
   })
 
