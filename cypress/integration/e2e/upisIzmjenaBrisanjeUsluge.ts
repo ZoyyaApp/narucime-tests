@@ -65,7 +65,7 @@ describe("Owner can login and crate a service / edit existing / delete", () => {
             .click();
         })
 
-    cy.get("[data-cy=input_durationMinutes]")
+    cy.get("[data-cy=input_durationMinutes] > .style__StyledSelect-sc-1infrqw-0 > .react-select__control > .react-select__indicators > .react-select__dropdown-indicator")
         .click()
         .then(() => {
             cy.get("#react-select-6-option-4")
@@ -119,14 +119,14 @@ describe("Owner can login and crate a service / edit existing / delete", () => {
             .click();
         })
 
-    cy.get("[data-cy=input_bookingAllowed]")
+    cy.get("[data-cy=input_bookingAllowed] > .style__StyledSelect-sc-1infrqw-0 > .react-select__control > .react-select__indicators > .react-select__dropdown-indicator")
         .click()
         .then(() => {
             cy.get("#react-select-10-option-0") // identifier se mijenja izmedu 9 i 10 pri pokretanjima ...
             .click();
         })
 
-    cy.get("[data-cy=input_durationMinutes]")
+    cy.get("[data-cy=input_durationMinutes] > .style__StyledSelect-sc-1infrqw-0 > .react-select__control > .react-select__indicators > .react-select__dropdown-indicator")
         .click()
         .then(() => {
             cy.get("#react-select-11-option-6")
