@@ -134,16 +134,16 @@ Cypress.Commands.add("getFormatedDate", (futureDays) =>{
 
   mm--;
 
-  var monthNameArr = ["sje", "velj", "ozu", "tra", "svi", "lip", "srp", "kol", "ruj", "lis", "stu", "pro"];
+  var monthNameArr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   var month = monthNameArr[mm];
 
   var weekDay = (today.getDay() + futureDays - 1) % 7;
   if(weekDay<0) weekDay += 7;
 
-  var weekDayNameArr = ["pon", "uto", "sri", "cet", "pet", "sub", "ned"];
+  var weekDayNameArr = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sut", "Sun"];
   name = weekDayNameArr[weekDay];
       
-  var danas = String(name + '. ' + dd + '. ' + month + '. ' + yyyy);
+  var danas = String(name + " " + month + " " + dd + ", " + yyyy);
   return cy.wrap(danas);
 
 });
