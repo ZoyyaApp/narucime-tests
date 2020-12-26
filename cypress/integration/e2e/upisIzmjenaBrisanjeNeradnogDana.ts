@@ -106,7 +106,8 @@ describe("Owner can login and crate an appointment / edit existing / delete", ()
     // neradni dan uspjesno obrisan  
 
     cy.get(".styles__TableStyled-oksjky-0")
-      .should("not.contain", text + " - izmjena");
+      .should("not.exist");
+      //.should("not.contain", text + " - izmjena");
 
     // provjera daje neradni dan obrisan
 
