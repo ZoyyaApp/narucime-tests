@@ -28,7 +28,11 @@ describe("Owner can login and crate an appointment / edit existing / delete", ()
 
     cy.location('pathname').should('match', /\/calendar\/day\/*$/)
 
-    cy.getWaitClick('[data-intercom-target="Sidebar-Settings"]', 1000);
+    //cy.getWaitClick('[data-intercom-target="Sidebar-Settings"]', 1000);
+
+    cy.wait(3000);
+    cy.get('[data-intercom-target="Sidebar-Settings"]')
+      .click();
 
     cy.location('pathname').should('include', '/settings/organization/');
 
