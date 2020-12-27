@@ -61,9 +61,16 @@ describe("Owner can login and edit branch data", () => {
         .type("{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}Odra")
         .should("have.value", "Odra");
 
-      /*cy.get(".react-select__dropdown-indicator")
+      cy.get('.react-select__value-container') // ... but the value was ''?
+        //.should("have.value", "Hrvatksa");
+
+      cy.get(".react-select__dropdown-indicator")
         .click()
-        .click();*/
+        .wait(2000)
+        .then(() => {
+            cy.get("#react-select-3-option-0") 
+            .click();
+        });
 
       /*cy.get(":nth-child(1)") 
         .should("have.value", "385232323232")
@@ -78,6 +85,8 @@ describe("Owner can login and edit branch data", () => {
 
       cy.get("[data-cy=button_saveChanges]")
         .click();
+
+      cy.errorToastVisible("New data saved for CypressTest");
   
   })
 
@@ -113,10 +122,15 @@ describe("Owner can login and edit branch data", () => {
         .type("{backspace}{backspace}{backspace}{backspace}Zagreb")
         .should("have.value", "Zagreb");
 
-      /*cy.get(".react-select__dropdown-indicator")
-        .should("have.value", "asdf")
-        .type(" gh")
-        .should("have.value", "asdf gh");*/
+      cy.get('.react-select__value-container');
+
+      cy.get(".react-select__dropdown-indicator")
+        .click()
+        .wait(2000)
+        .then(() => {
+            cy.get("#react-select-3-option-101") 
+            .click();
+        });
 
       cy.get("[data-cy=input_email]")
         .should("have.value", "fran1saban+boris@gmail.com.gov")
@@ -125,10 +139,12 @@ describe("Owner can login and edit branch data", () => {
 
       cy.get("[data-cy=button_saveChanges]")
         .click();
+
+      cy.errorToastVisible("New data saved for CypressTest");
   
   })
 
-  it("Confirm Branch data changes revertes successfully", () => {
+  it("Confirm Branch data changes reverted successfully", () => {
     
     cy.wait(3000);
     cy.get('[data-intercom-target="Sidebar-Settings"]')
@@ -150,10 +166,7 @@ describe("Owner can login and edit branch data", () => {
       cy.get("[data-cy=input_city]")
         .should("have.value", "Zagreb");
 
-      /*cy.get(".react-select__dropdown-indicator")
-        .should("have.value", "asdf")
-        .type(" gh")
-        .should("have.value", "asdf gh");*/
+      cy.get('.react-select__value-container');
 
       cy.get("[data-cy=input_email]")
         .should("have.value", "fran1saban+boris@gmail.com");
