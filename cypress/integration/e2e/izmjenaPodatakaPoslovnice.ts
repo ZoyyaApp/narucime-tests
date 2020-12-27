@@ -4,8 +4,7 @@ export const module = 1;
 
 /* BILJESKE:
 
-    1. prboblem s telefonom i mobirelom
-    2. odabir drzave
+    1. prboblem s tel/mob/drzavom - should ... but the value was ''?
 
 */
 
