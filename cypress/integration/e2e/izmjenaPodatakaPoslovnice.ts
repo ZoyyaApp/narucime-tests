@@ -4,7 +4,8 @@ export const module = 1;
 
 /* BILJESKE:
 
-    1. - 0
+    1. prboblem s telefonom i mobirelom
+    2. odabir drzave
 
 */
 
@@ -65,6 +66,17 @@ describe("Owner can login and edit branch data", () => {
         .type(" gh")
         .should("have.value", "asdf gh");*/
 
+      /*cy.get(":nth-child(1)") 
+        .should("have.value", "385232323232")
+        
+      cy.get(":nth-child(2)")
+        .should("have.value", "385232323232")*/
+        
+      cy.get("[data-cy=input_email]")
+        .should("have.value", "fran1saban+boris@gmail.com")
+        .type(".gov")
+        .should("have.value", "fran1saban+boris@gmail.com.gov");
+
       cy.get("[data-cy=button_saveChanges]")
         .click();
   
@@ -107,6 +119,11 @@ describe("Owner can login and edit branch data", () => {
         .type(" gh")
         .should("have.value", "asdf gh");*/
 
+      cy.get("[data-cy=input_email]")
+        .should("have.value", "fran1saban+boris@gmail.com.gov")
+        .type("{backspace}{backspace}{backspace}{backspace}")
+        .should("have.value", "fran1saban+boris@gmail.com");
+
       cy.get("[data-cy=button_saveChanges]")
         .click();
   
@@ -138,6 +155,9 @@ describe("Owner can login and edit branch data", () => {
         .should("have.value", "asdf")
         .type(" gh")
         .should("have.value", "asdf gh");*/
+
+      cy.get("[data-cy=input_email]")
+        .should("have.value", "fran1saban+boris@gmail.com");
   
   })
 
