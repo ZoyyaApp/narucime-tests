@@ -71,11 +71,15 @@ describe("Owner can login and edit branch data", () => {
             .click();
         });
 
-      /*cy.get(":nth-child(1)") 
-        .should("have.value", "385232323232")
+      cy.get(':nth-child(1) > [style="display: flex; flex: 1 1 0%; flex-direction: column; justify-content: initial; align-items: stretch; width: initial;"] > [style="flex-grow: 1; margin-right: 0px; position: relative; display: initial; align-items: initial;"] > .PhoneInput__StyledInput-sc-1vbxpuv-0 > .react-tel-input > .form-control') 
+        .should("have.value", "+385 (23) 232-3232")
+        .type("17")
+        .should("have.value", "+385 (23) 232-3232");
         
-      cy.get(":nth-child(2)")
-        .should("have.value", "385232323232")*/
+      cy.get(':nth-child(2) > [style="display: flex; flex: 1 1 0%; flex-direction: column; justify-content: initial; align-items: stretch; width: initial;"] > [style="flex-grow: 1; margin-right: 0px; position: relative; display: initial; align-items: initial;"] > .PhoneInput__StyledInput-sc-1vbxpuv-0 > .react-tel-input > .form-control')
+        .should("have.value", "+385 (23) 232-3232")
+        .type("{backspace}{backspace}")
+        .should("have.value", "+385 (23) 232-32");
         
       cy.get("[data-cy=input_email]")
         .should("have.value", "fran1saban+boris@gmail.com")
@@ -131,6 +135,14 @@ describe("Owner can login and edit branch data", () => {
             .click();
         });
 
+      cy.get(':nth-child(1) > [style="display: flex; flex: 1 1 0%; flex-direction: column; justify-content: initial; align-items: stretch; width: initial;"] > [style="flex-grow: 1; margin-right: 0px; position: relative; display: initial; align-items: initial;"] > .PhoneInput__StyledInput-sc-1vbxpuv-0 > .react-tel-input > .form-control') 
+        .should("have.value", "+385 (23) 232-3232");
+        
+      cy.get(':nth-child(2) > [style="display: flex; flex: 1 1 0%; flex-direction: column; justify-content: initial; align-items: stretch; width: initial;"] > [style="flex-grow: 1; margin-right: 0px; position: relative; display: initial; align-items: initial;"] > .PhoneInput__StyledInput-sc-1vbxpuv-0 > .react-tel-input > .form-control')
+        .should("have.value", "+385 (23) 232-32")
+        .type("32")
+        .should("have.value", "+385 (23) 232-3232");
+
       cy.get("[data-cy=input_email]")
         .should("have.value", "fran1saban+boris@gmail.com.gov")
         .type("{backspace}{backspace}{backspace}{backspace}")
@@ -166,6 +178,12 @@ describe("Owner can login and edit branch data", () => {
         .should("have.value", "Zagreb");
 
       cy.get('.react-select__value-container');
+
+      cy.get(':nth-child(1) > [style="display: flex; flex: 1 1 0%; flex-direction: column; justify-content: initial; align-items: stretch; width: initial;"] > [style="flex-grow: 1; margin-right: 0px; position: relative; display: initial; align-items: initial;"] > .PhoneInput__StyledInput-sc-1vbxpuv-0 > .react-tel-input > .form-control') 
+        .should("have.value", "+385 (23) 232-3232");
+      
+      cy.get(':nth-child(2) > [style="display: flex; flex: 1 1 0%; flex-direction: column; justify-content: initial; align-items: stretch; width: initial;"] > [style="flex-grow: 1; margin-right: 0px; position: relative; display: initial; align-items: initial;"] > .PhoneInput__StyledInput-sc-1vbxpuv-0 > .react-tel-input > .form-control')
+        .should("have.value", "+385 (23) 232-3232");
 
       cy.get("[data-cy=input_email]")
         .should("have.value", "fran1saban+boris@gmail.com");
