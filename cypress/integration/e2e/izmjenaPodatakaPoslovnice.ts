@@ -34,24 +34,69 @@ describe("Owner can login and edit branch data", () => {
     cy.get('[data-intercom-target="Sidebar-Settings"]')
       .click();
     //cy.getWaitClick('[data-intercom-target="Sidebar-Settings"]', 500); 
+
+    cy.get("[data-cy=input_name]")
+      .should("have.value", "CypressTest")
+      .type(" - izmjena")
+      .should("have.value", "CypressTest - izmjena");
+
+      cy.get("[data-cy=input_description]")
+        .should("have.value", "asdf")
+        .type(" gh")
+        .should("have.value", "asdf gh");
+
+      cy.get("[data-cy=input_address]")
+        .should("have.value", "Trg")
+        .type(" bana J.J.")
+        .should("have.value", "Trg bana J.J.");
+    
+      cy.get("[data-cy=button_saveChanges]")
+        .click();
   
   })
 
-  it("Confirm Branch data changes", () => {
+  it("Confirm and revert Branch data changes", () => {
     
     cy.wait(3000);
     cy.get('[data-intercom-target="Sidebar-Settings"]')
       .click();
     //cy.getWaitClick('[data-intercom-target="Sidebar-Settings"]', 500); 
+
+    cy.get("[data-cy=input_name]")
+      .should("have.value", "CypressTest - izmjena")
+      .type("{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}")
+      .should("have.value", "CypressTest");
+
+      cy.get("[data-cy=input_description]")
+        .should("have.value", "asdf gh")
+        .type("{backspace}{backspace}{backspace}")
+        .should("have.value", "asdf");
+
+      cy.get("[data-cy=input_address]")
+        .should("have.value", "Trg bana J.J.")
+        .type("{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}")
+        .should("have.value", "Trg");
+
+      cy.get("[data-cy=button_saveChanges]")
+        .click();
   
   })
 
-  it("Revert Branch data changes", () => {
+  it("Confirm Branch data changes revertes successfully", () => {
     
     cy.wait(3000);
     cy.get('[data-intercom-target="Sidebar-Settings"]')
       .click();
     //cy.getWaitClick('[data-intercom-target="Sidebar-Settings"]', 500); 
+
+    cy.get("[data-cy=input_name]")
+      .should("have.value", "CypressTest");
+
+      cy.get("[data-cy=input_description]")
+        .should("have.value", "asdf");
+
+      cy.get("[data-cy=input_address]")
+        .should("have.value", "Trg");
   
   })
 
