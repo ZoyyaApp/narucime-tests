@@ -49,7 +49,22 @@ describe("Owner can login and edit branch data", () => {
         .should("have.value", "Trg")
         .type(" bana J.J.")
         .should("have.value", "Trg bana J.J.");
-    
+
+      cy.get("[data-cy=input_zipCode]")
+        .should("have.value", "10000")
+        .type("{backspace}{backspace}22")
+        .should("have.value", "10022");
+
+      cy.get("[data-cy=input_city]")
+        .should("have.value", "Zagreb")
+        .type("{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}Odra")
+        .should("have.value", "Odra");
+
+      /*cy.get(".react-select__dropdown-indicator")
+        .should("have.value", "asdf")
+        .type(" gh")
+        .should("have.value", "asdf gh");*/
+
       cy.get("[data-cy=button_saveChanges]")
         .click();
   
@@ -77,6 +92,21 @@ describe("Owner can login and edit branch data", () => {
         .type("{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}")
         .should("have.value", "Trg");
 
+        cy.get("[data-cy=input_zipCode]")
+        .should("have.value", "10022")
+        .type("{backspace}{backspace}00")
+        .should("have.value", "10000");
+
+      cy.get("[data-cy=input_city]")
+        .should("have.value", "Odra")
+        .type("{backspace}{backspace}{backspace}{backspace}Zagreb")
+        .should("have.value", "Zagreb");
+
+      /*cy.get(".react-select__dropdown-indicator")
+        .should("have.value", "asdf")
+        .type(" gh")
+        .should("have.value", "asdf gh");*/
+
       cy.get("[data-cy=button_saveChanges]")
         .click();
   
@@ -97,6 +127,17 @@ describe("Owner can login and edit branch data", () => {
 
       cy.get("[data-cy=input_address]")
         .should("have.value", "Trg");
+
+        cy.get("[data-cy=input_zipCode]")
+        .should("have.value", "10000");
+
+      cy.get("[data-cy=input_city]")
+        .should("have.value", "Zagreb");
+
+      /*cy.get(".react-select__dropdown-indicator")
+        .should("have.value", "asdf")
+        .type(" gh")
+        .should("have.value", "asdf gh");*/
   
   })
 
