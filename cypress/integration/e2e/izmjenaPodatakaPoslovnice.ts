@@ -4,7 +4,7 @@ export const module = 1;
 
 /* BILJESKE:
 
-    1. - idnetifieri na sidebaru
+    1. - 0
 
 */
 
@@ -25,9 +25,6 @@ describe("Owner can login and edit branch data", () => {
 
     cy.getButton("submit").click();
     cy.location('pathname').should('match', /\/calendar\/day\/*$/);
-
-    //cy.getWaitClick(".dUbUBi@", 500); // identifier!
-    //cy.getFirstWaitClick(".hyiaHA", 500); // identifier!
 
   })
 
