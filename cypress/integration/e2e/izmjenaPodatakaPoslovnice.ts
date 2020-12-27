@@ -62,9 +62,8 @@ describe("Owner can login and edit branch data", () => {
         .should("have.value", "Odra");
 
       /*cy.get(".react-select__dropdown-indicator")
-        .should("have.value", "asdf")
-        .type(" gh")
-        .should("have.value", "asdf gh");*/
+        .click()
+        .click();*/
 
       /*cy.get(":nth-child(1)") 
         .should("have.value", "385232323232")
