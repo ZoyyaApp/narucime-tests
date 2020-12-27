@@ -4,7 +4,7 @@ export const module = 1;
 
 /* BILJESKE:
 
-    1. prboblem s tel/mob/drzavom - should ... but the value was ''?
+    prboblem s drzavom - should ... but the value was ''?
 
 */
 
