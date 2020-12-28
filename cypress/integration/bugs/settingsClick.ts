@@ -28,6 +28,9 @@ describe("Test clicking on settings button after spinner dissapears", () => {
 
     //cy.get('.styles__Spinner-iugvqw-2', {timeout: 10000}).should('not.exist'); // ne radi kako treba
 
+    cy.get('.styles__Spinner-iugvqw-2');
+    cy.get('[data-cy="zoyya-loading"]');
+
     cy.wait(2000);
     cy.get('[data-intercom-target="Sidebar-Settings"]').click();
     
